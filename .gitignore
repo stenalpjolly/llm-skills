@@ -1,0 +1,11 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary and local folders
+tmp/
+temp/
+*.log
+
+# Environment variables
+.env
