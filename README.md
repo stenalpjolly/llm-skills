@@ -24,6 +24,7 @@ Below is a list of sample skills contained in this repository:
 | `migrating-react-to-angular` | Converts React components (.jsx/.tsx) into standalone Angular 17+ components using Angular Material. | `skills/migrating-react-to-angular` |
 | `migrating-nextjs-to-python` | Translates Next.js JavaScript/TypeScript API routes (req, res) into clean FastAPI Python backend endpoints. | `skills/migrating-nextjs-to-python` |
 | `validating-migration-builds` | Provides build and lint validation checks for migrated Angular and Python code. | `skills/validating-migration-builds` |
+| `karpathy-guidelines` | Behavioral guidelines to reduce common LLM coding mistakes. | `skills/karpathy-guidelines` |
 
 ## Discovery & Backlog Migration Pipeline
 
