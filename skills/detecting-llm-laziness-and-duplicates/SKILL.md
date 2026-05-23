@@ -14,8 +14,8 @@ To scan large repositories without overflowing the LLM's context window, this sk
 
 1. **Verify via Local Parser First**: Do not read random codebase files to hunt for laziness. Run the local QCO parser script (`python3 scripts/detect_laziness_and_duplicates.py`) to generate a structured candidate report first.
 2. **Review Snippet Context**: Treat the local parser's candidates as a prioritized queue. Review the surrounding lines in the report to distinguish intentional placeholders/stubs from lazy LLM omissions.
-3. **Analyze Duplicates Structurally**: When investigating duplicate code, compare functions or classes for behavioral equivalence. Prioritize refactoring duplicate business logic into shared helper functions.
-4. **Enforce the Zero-Stub Standard**: Any active code containing temporary static mock data, comment ellipses (e.g., `// ... existing logic`), or `NotImplementedError` that is accessible by production code must be flagged as a critical defect.
+3. **Analyze Duplicates Structurally**: When investigating duplicate code, compare functions or classes for behavioral equivalence. Prioritize refactoring duplicate business logic into shared helper functions. MOC/mock data duplicates in test files are automatically filtered out by the scanner, so anything remaining requires review.
+4. **Enforce the Zero-Stub Standard**: Any active code containing temporary static mock data (e.g. hard-coded arrays/lists instead of database/API queries), comment ellipses (e.g., `// ... existing logic`), or `NotImplementedError` that is accessible by production code must be flagged as a critical defect.
 
 ## QCO (Quality Control Oracle) Mechanism
 

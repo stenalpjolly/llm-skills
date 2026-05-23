@@ -40,7 +40,10 @@ LAZINESS_PATTERNS = [
     (r'(?i)//\s*(?:\[previous\s+code\s+stays|code\s+remains|keep\s+other\s+imports)', 'lazy_placeholder', "Lazy placeholder comment indicating omitted code"),
     (r'(?i)#\s*(?:\[previous\s+code\s+stays|code\s+remains|keep\s+other\s+imports)', 'lazy_placeholder', "Lazy placeholder comment indicating omitted code"),
     (r'(?i)(?:NotImplementedError|NotImplementedException)', 'not_implemented_stub', "Explicit 'NotImplemented' stub exception"),
-    (r'(?i)return\s+["\'](?:todo|placeholder|need\s+to\s+be\s+done|implemented)["\']', 'static_mock_return', "Static mock/placeholder return value")
+    (r'(?i)return\s+["\'](?:todo|placeholder|need\s+to\s+be\s+done|implemented)["\']', 'static_mock_return', "Static mock/placeholder return value"),
+    (r'(?i)return\s+\[\s*(?:["\'][^"\']+["\']\s*,\s*){2,}["\'][^"\']+["\']\s*\]', 'static_mock_return', "Hard-coded static list return"),
+    (r'(?i)return\s+\[\s*\{.*?\}\s*(?:,\s*\{.*?\})*\s*\]', 'static_mock_return', "Hard-coded static array of objects return"),
+    (r'(?i)return\s+(?:\[\s*\]|\{\s*\})\s*;?\s*(?://|#)\s*(?:mock|dummy|stub|todo)', 'static_mock_return', "Empty mock/stub return with comment")
 ]
 
 # Regex patterns for TODOs and FIXMEs
@@ -91,6 +94,9 @@ def scan_file_heuristics(filepath, lines, relative_path):
         # 1. Check for Laziness Heuristics
         for pattern, category, desc in LAZINESS_PATTERNS:
             if re.search(pattern, line):
+                # Ignore static mock returns in test files since they are expected
+                if category == 'static_mock_return' and is_test_file(relative_path):
+                    continue
                 laziness_findings.append({
                     "file": relative_path,
                     "line_num": idx + 1,
@@ -115,6 +121,19 @@ def scan_file_heuristics(filepath, lines, relative_path):
                 break
 
     return laziness_findings, todo_findings
+
+def is_test_file(filepath):
+    """
+    Determines if a file is likely a test file based on its path and name.
+    """
+    path_lower = filepath.lower()
+    return ('/test/' in path_lower or 
+            '/tests/' in path_lower or 
+            '__tests__' in path_lower or 
+            'test_' in os.path.basename(path_lower) or 
+            '_test.' in os.path.basename(path_lower) or 
+            '.test.' in os.path.basename(path_lower) or 
+            '.spec.' in os.path.basename(path_lower))
 
 def detect_clones(file_lines_map, min_dup_lines=6):
     """
@@ -199,6 +218,10 @@ def detect_clones(file_lines_map, min_dup_lines=6):
                 
                 idx2_start = idx1_start + offset
                 idx2_end = idx1_end + offset
+
+                # Ignore duplicates if they are mock data within test files
+                if is_test_file(f1) and is_test_file(f2):
+                    continue
 
                 # Get original line numbers
                 orig_start_1 = file_non_trivial[f1][idx1_start][0]
