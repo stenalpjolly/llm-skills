@@ -53,3 +53,10 @@ Surgically edit the codebase to resolve the issue. Avoid writing non-essential h
 1.  Run the test suite again to confirm the test now **passes**.
 2.  Execute standard build, linting, and typecheck checks to ensure code health.
 3.  Remove any temporary test configurations or dummy files.
+
+### Step 7: Close the Issue with Commit Reference
+After committing the verified changes, close the tracking GitHub issue. Ensure that you retrieve the git commit ID (SHA) of the fix and refer to it when closing the issue to establish a clear link between the resolution and the code.
+Close the issue using:
+```bash
+python3 skills/implementing-test-driven-issue-resolution/scripts/manage_github_issue.py --repo {owner/repo} --update {issue_number} --state closed
+```
