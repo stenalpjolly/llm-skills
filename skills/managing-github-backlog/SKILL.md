@@ -13,9 +13,9 @@ This skill executes the final step of the planning phase by pushing drafted issu
 2. **Verify Input.** Ensure `drafted_issues.json` exists and is valid JSON before running the script.
 
 ## Execution
-Run the script to push the issues. You will need the repository name (e.g., `owner/repo`) and a GitHub token.
+Run the script to push the issues. You will need the repository name (e.g., `owner/repo`) and a GitHub token. You can fetch the token using the GitHub CLI (`gh`).
 
 ```bash
-export GITHUB_TOKEN="your_token_here"
+export GITHUB_TOKEN=$(gh auth token)
 python3 scripts/push_issues.py --repo {owner/repo} --file drafted_issues.json
 ```
