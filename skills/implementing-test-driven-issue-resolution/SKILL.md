@@ -39,7 +39,8 @@ Show the user:
 *   The issue ID/URL.
 *   The reproduction steps or use-case.
 *   The proposed test-case structure and target file.
-*   Wait for the user's explicit confirmation before proceeding.
+*   Ask for the user's explicit confirmation using a "Yes or No, with suggestions" question format before proceeding.
+*   If the user answers "No" or proposes a change/suggestion, revalidate the requirements, recreate the plan, and present it for confirmation again.
 
 ### Step 4: Write the Failing Test (Red Phase)
 Write a unit test, integration test, or script that directly asserts the new feature or exercises the bug.
