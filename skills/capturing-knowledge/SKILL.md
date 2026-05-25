@@ -35,8 +35,15 @@ If the extracted knowledge forms a multi-step, reusable procedure:
 
 ### 3. Update Memory for Static Rules
 If the extracted knowledge is a simple guideline, preference, or architectural rule:
-1. Append it to the project memory file (e.g., `AGENTS.md`).
-2. Use clear conditional formatting: "When doing X, always Y because Z".
+1. **Draft Candidate Rules:** Formulate each guideline using the atomic, generic XYZ conditional rule format: *"When doing [Context] (X), always [Action] (Y) because [Technical Rationale] (Z)."* Strip away any instance-specific details (like exact file paths or variable names).
+2. **Present Options to the User:** List the drafted rules clearly in a numbered format. For example:
+   > "I have identified the following candidate rules for `AGENTS.md`. Please specify which ones you would like to keep (e.g., '1, 3', 'all', or 'none'):"
+   > 1. [Rule A]
+   > 2. [Rule B]
+3. **Wait for User Input:** Stop execution and await explicit user confirmation. Do not edit or append to the project memory file (`AGENTS.md`) until the user has responded.
+4. **Append Only Approved Rules:**
+   - If the user selects one or more rules, append only those selected rules to the memory file.
+   - If the user selects "none" (or zero rules), do not modify the memory file and proceed to summarize the outcome.
 
 ### 4. Summarize Output
 Provide a concise, direct list of:
