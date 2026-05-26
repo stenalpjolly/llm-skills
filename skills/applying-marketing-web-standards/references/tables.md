@@ -106,8 +106,9 @@ Tables present structured comparative datasets (such as product specs, plans, st
 ## 4. Accessibility Checklist
 
 *   **Semantic Elements**: Always construct tables using native HTML tags (`<table>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, `<td>`). Avoid CSS grid/flex structures pretending to be tables.
-*   **Column & Row Headers**:
-    *   Set `scope="col"` on header cells inside `<thead>`.
-    *   Set `scope="row"` on cells describing row headings in `<tbody>` (such as the product name in the leftmost column), helping screen readers announce contextual parameters as users scan rows.
-*   **Responsive Scrolling**: Wrap large tables in an `<div class="g-table-container">` with `overflow-x: auto` so the mobile viewport does not clip text. Set `tabindex="0"` on the wrapping container so keyboard users can scroll through columns using arrow keys.
+*   **Keyboard Navigation & Column Scopes**: Custom data tables often omit structural column and row scopes, which breaks keyboard navigation context. You must explicitly enforce:
+    *   `scope="col"` on all header headers (`<th>`).
+    *   `scope="row"` on row header titles to announce row contexts to screen readers.
+    *   `tabindex="0"` on all scrollable table wrappers to allow keyboard focus.
+*   **Responsive Scrolling**: Wrap large tables in an `<div class="g-table-container">` with `overflow-x: auto` so the mobile viewport does not clip text.
 *   **Table Captions**: Include a `<caption>` element describing the dataset's purpose for assistive tech.

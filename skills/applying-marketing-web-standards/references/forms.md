@@ -21,6 +21,36 @@ Google marketing websites primarily use the **Material Outlined** text field sty
 *   **Focus / Active**: `2px` outline `#4285F4` (Google Blue).
 *   **Error**: `2px` outline `#EA4335` (Google Red), Label `#EA4335`.
 
+### 1.2 Dense Layouts and Subscript Collapsing
+When form elements are placed inside dense containers (like table cells) where helper text/validation error spacing is not needed, you must collapse the empty reserved subscript wrapper space to prevent vertical alignment shifts:
+1. Set `subscriptSizing="dynamic"` on `<mat-form-field>`.
+2. Hide the wrapper and center the text container using CSS:
+   ```css
+   .g-field-dense ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+     display: none !important;
+   }
+   .g-field-dense ::ng-deep .mat-mdc-form-field-infix {
+     padding: 8px 0px !important;
+     min-height: 40px !important;
+   }
+   ```
+
+### 1.3 Clean Outlined Number Inputs
+For numeric inputs, browser-native spinner buttons must be hidden to maintain a clean, modern appearance. The input text should be centered:
+```css
+.g-input-number ::ng-deep input {
+  text-align: center !important;
+}
+.g-input-number ::ng-deep input::-webkit-outer-spin-button,
+.g-input-number ::ng-deep input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.g-input-number ::ng-deep input[type=number] {
+  -moz-appearance: textfield;
+}
+```
+
 ---
 
 ## 2. Checkboxes

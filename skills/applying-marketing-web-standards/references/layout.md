@@ -82,3 +82,18 @@ To assist keyboard-only and screen reader users, a visually hidden skip link mus
       outline: 2px solid #202124;
     }
     ```
+
+### 3.4 Screen-Reader Only Utility (.sr-only)
+Every Google marketing site must define this standard utility class in its global styles.css to hide descriptive content from sighted users while preserving it for accessibility technology:
+```css
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+```
