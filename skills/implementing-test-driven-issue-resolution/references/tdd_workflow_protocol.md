@@ -81,4 +81,4 @@ Run the test again to verify it has turned green.
 
 ### Stage 4: Commit and Clean Up
 - **Clean Artifacts**: Delete any test databases, logs, or intermediate workspace noise before preparing commits.
-- **Record**: Ensure the tracking GitHub Issue is closed or updated with the final PR/Commit links.
+- **Record**: Ensure the tracking GitHub Issue is updated with a comment containing the final PR/Commit links, and then closed. Never overwrite or edit the main issue description with commit details, ensuring the JIRA-like description is preserved.

@@ -55,9 +55,10 @@ Surgically edit the codebase to resolve the issue. Avoid writing non-essential h
 2.  Execute standard build, linting, and typecheck checks to ensure code health.
 3.  Remove any temporary test configurations or dummy files.
 
-### Step 7: Close the Issue with Commit Reference
-After committing the verified changes, close the tracking GitHub issue. Ensure that you retrieve the git commit ID (SHA) of the fix and refer to it when closing the issue to establish a clear link between the resolution and the code.
-Close the issue using:
+### Step 7: Comment and Close the Issue with PR Details
+After committing and verifying the changes, add a new comment containing the PR details and git commit ID (SHA) to the tracking GitHub issue, and then close it. Do not update or overwrite the main issue description (body), so that the original description remains intact (matching JIRA specifications).
+
+Close and comment on the issue using:
 ```bash
-python3 skills/implementing-test-driven-issue-resolution/scripts/manage_github_issue.py --repo {owner/repo} --update {issue_number} --state closed
+python3 skills/implementing-test-driven-issue-resolution/scripts/manage_github_issue.py --repo {owner/repo} --update {issue_number} --comment "Resolved in PR #123 (Commit: {commit_sha})" --state closed
 ```

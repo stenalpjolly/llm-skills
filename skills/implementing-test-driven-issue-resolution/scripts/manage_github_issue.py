@@ -69,20 +69,27 @@ def create_issue(repo, title, body, labels=None):
     output = run_gh_cmd(args)
     return output
 
-def update_issue(repo, number, title=None, body=None, labels=None, state=None):
+def update_issue(repo, number, title=None, body=None, labels=None, state=None, comment=None):
     """
-    Updates an existing issue.
+    Updates an existing issue, adds comments, and transitions state.
     """
-    args = ["issue", "edit", str(number), "--repo", repo]
-    if title:
-        args.extend(["--title", title])
-    if body:
-        args.extend(["--body", body])
-    if labels:
-        args.extend(["--add-label", ",".join(labels)])
-    
-    # Apply changes
-    run_gh_cmd(args)
+    # Only run "edit" if title, body description, or labels are explicitly being modified
+    if title or body is not None or labels:
+        args = ["issue", "edit", str(number), "--repo", repo]
+        if title:
+            args.extend(["--title", title])
+        if body is not None:
+            args.extend(["--body", body])
+        if labels:
+            args.extend(["--add-label", ",".join(labels)])
+        
+        # Apply changes
+        run_gh_cmd(args)
+
+    # Post comment if provided, keeping description intact
+    if comment:
+        comment_args = ["issue", "comment", str(number), "--repo", repo, "--body", comment]
+        run_gh_cmd(comment_args)
 
     # If state transition is requested, run close or reopen separately
     if state == "closed":
@@ -106,6 +113,8 @@ def main():
     parser.add_argument("--title", help="Title for the issue.")
     parser.add_argument("--body", help="Inline body text for the issue.")
     parser.add_argument("--body-file", help="Path to a file containing the markdown body.")
+    parser.add_argument("--comment", help="Comment text to add to the issue.")
+    parser.add_argument("--comment-file", help="Path to a file containing the comment markdown body.")
     parser.add_argument("--labels", nargs="+", help="Labels to associate with the issue.")
     parser.add_argument("--state", choices=["open", "closed"], help="Target state when updating an issue.")
     args = parser.parse_args()
@@ -118,6 +127,16 @@ def main():
                 body_content = f.read()
         except Exception as e:
             print(f"Error reading body-file: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    # Read comment from file if specified
+    comment_content = args.comment or ""
+    if args.comment_file:
+        try:
+            with open(os.path.abspath(args.comment_file), "r", encoding="utf-8") as f:
+                comment_content = f.read()
+        except Exception as e:
+            print(f"Error reading comment-file: {e}", file=sys.stderr)
             sys.exit(1)
 
     # Execute Search Action
@@ -145,12 +164,23 @@ def main():
 
     # Execute Update Action
     elif args.update:
-        if not (args.title or body_content or args.labels or args.state):
-            print("Error: At least one modification field (--title, --body, --body-file, --labels, --state) must be specified for updates.", file=sys.stderr)
+        has_body = args.body is not None or args.body_file is not None
+        has_comment = args.comment is not None or args.comment_file is not None
+
+        if not (args.title or has_body or args.labels or args.state or has_comment):
+            print("Error: At least one modification field (--title, --body, --body-file, --labels, --state, --comment, --comment-file) must be specified for updates.", file=sys.stderr)
             sys.exit(1)
         
         print(f"Updating issue #{args.update} in {args.repo}...")
-        update_issue(args.repo, args.update, args.title, body_content, args.labels, args.state)
+        update_issue(
+            repo=args.repo,
+            number=args.update,
+            title=args.title,
+            body=body_content if has_body else None,
+            labels=args.labels,
+            state=args.state,
+            comment=comment_content if has_comment else None
+        )
 
 if __name__ == "__main__":
     main()
