@@ -9,3 +9,4 @@ temp/
 
 # Environment variables
 .env
+.idea/
