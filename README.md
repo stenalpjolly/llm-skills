@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/stenalpjolly/llm-skills/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/skills-21--active-success" alt="Skills Active"></a>
+  <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/skills-22--active-success" alt="Skills Active"></a>
   <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/agent--support-Kilo--enabled-orange" alt="Agent Support"></a>
   <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/style-Strands--SDK-blueviolet" alt="Documentation Style"></a>
 </p>
@@ -23,6 +23,36 @@ By bridging pure LLM instructions with deterministic code-execution validation, 
 - **Avoiding the "Instruction-Only" Trap:** Standardizes processes by replacing fragile instruction lists with executable scripts (Python/Bash) under `scripts/`.
 - **Progressive Disclosure:** Uses lightweight YAML frontmatter metadata to ensure agents load deep context only when relevant.
 - **Surgical, Verified Changes:** Emphasizes test-driven cycles and local build validation to guarantee correctness.
+
+---
+
+## 📦 Installation & Usage
+
+You can install and use these skills with any supported AI coding agent (e.g., `antigravity`, `claude-code`, `cursor`) using the **[Agent Skills CLI](https://github.com/vercel-labs/agent-skills)**.
+
+### List Available Skills
+To list all skills available in this repository without installing:
+```bash
+npx skills add stenalpjolly/llm-skills --list
+```
+
+### Install a Specific Skill
+To install a specific skill (e.g., `designing-tasteful-frontends`) to a target agent:
+```bash
+npx skills add stenalpjolly/llm-skills --skill designing-tasteful-frontends --agent antigravity
+```
+
+### Install All Skills
+To install all skills in this repository to all detected agents on your system:
+```bash
+npx skills add stenalpjolly/llm-skills --all
+```
+
+### Use a Skill Without Installing
+To generate a prompt for a skill and pipe it directly to a coding agent:
+```bash
+npx skills use stenalpjolly/llm-skills --skill designing-tasteful-frontends --agent claude-code
+```
 
 ---
 
@@ -109,6 +139,7 @@ The skills within this repository are designed to compose seamlessly into specia
 | `applying-marketing-web-standards` | [`skills/applying-marketing-web-standards`](skills/applying-marketing-web-standards) | Provides guidelines, visual specs, and accessibility rules for Google-branded marketing websites. |
 | `auditing-ui-ux` | [`skills/auditing-ui-ux`](skills/auditing-ui-ux) | Performs a comprehensive UI/UX design audit on application screens or components. |
 | `crawling-web-applications` | [`skills/crawling-web-applications`](skills/crawling-web-applications) | Crawls, navigates, and audits a web application's links, buttons, and interactive elements. |
+| `designing-tasteful-frontends` | [`skills/designing-tasteful-frontends`](skills/designing-tasteful-frontends) | Upgrades AI-built frontends (landing pages, portfolios, marketing sites) to premium, Awwwards-level quality. |
 | `generating-qa-scenarios` | [`skills/generating-qa-scenarios`](skills/generating-qa-scenarios) | Generates conversational user evaluation scenarios and test case checklists for software flows or user journeys. |
 
 ### 📝 Knowledge, Communication & Standards
