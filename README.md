@@ -208,6 +208,21 @@ Detailed markdown instructions, rules, and workflows for the agent.
 
 ---
 
+## 🌐 Recommended Skills Repositories
+
+You can install and reference excellent agent skills from other official and community repositories directly using the CLI:
+
+- **[Google Agent Skills](https://github.com/google/skills)**: Official Google repository hosting standard agent workflows, developer tool integrations, and engineering best practice skills.
+  ```bash
+  npx skills add google/skills
+  ```
+- **[Flutter Agent Skills](https://github.com/flutter/skills)**: A collection of specialized skills for Flutter and Dart development, widget design, and state management optimization.
+  ```bash
+  npx skills add flutter/skills
+  ```
+
+---
+
 ## 📜 License
 
 This repository is licensed under the [MIT License](LICENSE).
