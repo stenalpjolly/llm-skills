@@ -220,6 +220,10 @@ You can install and reference excellent agent skills from other official and com
   ```bash
   npx skills add flutter/skills
   ```
+- **[Matt Pocock Skills](https://github.com/mattpocock/skills)**: A collection of agent skills, workflows, and developer utilities curated by Matt Pocock.
+  ```bash
+  npx skills add mattpocock/skills
+  ```
 
 ---
 
