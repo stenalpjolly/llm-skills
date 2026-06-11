@@ -212,13 +212,21 @@ Detailed markdown instructions, rules, and workflows for the agent.
 
 You can install and reference excellent agent skills from other official and community repositories directly using the CLI:
 
-- **[Google Agent Skills](https://github.com/google/skills)**: Official Google repository hosting standard agent workflows, developer tool integrations, and engineering best practice skills.
+- **[Addy Osmani's Agent Skills](https://github.com/addyosmani/agent-skills)**: A repository of production-grade engineering skills, quality gates, and best practices for AI coding agents.
   ```bash
-  npx skills add google/skills
+  npx skills add addyosmani/agent-skills
+  ```
+- **[Awesome Claude Skills](https://github.com/ComposioHQ/awesome-claude-skills)**: A curated list of production-ready Claude skills, plugins, and tools for customizing AI workflows.
+  ```bash
+  npx skills add ComposioHQ/awesome-claude-skills
   ```
 - **[Flutter Agent Skills](https://github.com/flutter/skills)**: A collection of specialized skills for Flutter and Dart development, widget design, and state management optimization.
   ```bash
   npx skills add flutter/skills
+  ```
+- **[Google Agent Skills](https://github.com/google/skills)**: Official Google repository hosting standard agent workflows, developer tool integrations, and engineering best practice skills.
+  ```bash
+  npx skills add google/skills
   ```
 - **[Matt Pocock Skills](https://github.com/mattpocock/skills)**: A collection of agent skills, workflows, and developer utilities curated by Matt Pocock.
   ```bash
