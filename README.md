@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/stenalpjolly/llm-skills/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/skills-22--active-success" alt="Skills Active"></a>
+  <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/skills-23--active-success" alt="Skills Active"></a>
   <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/agent--support-Kilo--enabled-orange" alt="Agent Support"></a>
   <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/style-Strands--SDK-blueviolet" alt="Documentation Style"></a>
 </p>
@@ -106,6 +106,7 @@ The skills within this repository are designed to compose seamlessly into specia
 ### 🛡️ Core Guardrails & Guidelines
 | Skill Name | Location | Description |
 | :--- | :--- | :--- |
+| `bootstrapping-projects` | [`skills/bootstrapping-projects`](skills/bootstrapping-projects) | Bootstraps a new project or initializes an existing directory with standard structures, planning files, version control, and agnostic AI agent rules. |
 | `karpathy-guidelines` | [`skills/karpathy-guidelines`](skills/karpathy-guidelines) | Behavioral guidelines to reduce common LLM coding mistakes, focus on surgical changes, simplicity, and verifiable goals. |
 | `detecting-llm-laziness-and-duplicates` | [`skills/detecting-llm-laziness-and-duplicates`](skills/detecting-llm-laziness-and-duplicates) | Identifies LLM-generated duplicate code, TODO/FIXME comments, static/lazy stubs, mock data, and placeholder files. |
 | `kilo-config` (Built-in) | [`builtin/kilo-config`](builtin/kilo-config) | Guide for Kilo configuration: config paths, kilo.json fields, commands, agents, skills, permissions, MCPs, providers, TUI settings. |
