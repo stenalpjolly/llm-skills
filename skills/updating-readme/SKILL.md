@@ -3,6 +3,7 @@ name: updating-readme
 description: >-
   Standardizes how agents update and manage README.md files, adopting the Deep Insight/Strands SDK documentation style.
   Use when creating a new README from scratch, improving an existing README, or converting technical docs to user-friendly formats.
+  When creating or editing Mermaid diagrams in the README, load and use the `generating-mermaid-diagrams` skill.
   Don't use for API-only documentation or internal technical specs.
 ---
 
@@ -11,7 +12,7 @@ description: >-
 A well-written README enables users to understand what the project does in 30 seconds, see visual proof (logos, diagrams), get it running in 2-5 minutes, find detailed resources, and feel confident about the project's quality.
 
 ## Key Principles
-- **Visual first:** Prioritize a logo, centered layout, badges, and architecture diagrams.
+- **Visual first:** Prioritize a logo, centered layout, badges, and architecture diagrams. **If creating or editing Mermaid architecture diagrams, load and strictly follow the `generating-mermaid-diagrams` skill to prevent parser errors.**
 - **Balanced depth:** Substantial enough to be useful, focused enough to stay readable.
 - **Progressive disclosure:** Quick value at the top, deep details further down.
 - **Code-first:** Show working examples, not just descriptions.
@@ -35,7 +36,7 @@ A well-written README enables users to understand what the project does in 30 se
 
 ## Validation
 Before finalizing, verify:
-- **Visual appeal:** Includes logo, centered header, proper spacing, and badges.
+- **Visual appeal:** Includes logo, centered header, proper spacing, and badges. **Validate any Mermaid diagrams using the `generating-mermaid-diagrams` Python validation script to ensure they compile/render without syntax errors.**
 - **Completeness:** All essential sections are present.
 - **Accuracy:** All commands and links work correctly.
 - **Clarity:** A non-technical user can follow the instructions.
