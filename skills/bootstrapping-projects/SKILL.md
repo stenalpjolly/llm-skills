@@ -32,7 +32,8 @@ graph TD
 ```
 
 ## Best Practices
-- **Analyze Before Action:** Always inspect the target directory first. Never blindly overwrite existing files; instead, augment them.
+- **Clarify Before Action (Ambiguity Gate):** If the tech stack, project scope, database preference, or deployment target is unclear, do not proceed with default assumptions. You must prompt the user with concise options first.
+- **Analyze Before Action:** Always inspect the target directory first. Never blindly overwrite existing files. If existing files conflict with bootstrapping templates, ask the user whether to augment, bypass, or replace them.
 - **Combined Bootstrapping:** Use the helper Python script (`scripts/bootstrap.py`) to create empty directories and write boilerplate gitignores. Let the LLM fill in high-context files (`PLAN.md`, `README.md`, `AGENTS.md`).
 - **Agnostic Agent Rules:** Ensure generated agent instructions (e.g., `AGENTS.md`) are standard and agnostic to specific IDE extensions or agent frameworks (e.g., compatible with Claude Code, Roo, Cursor, Kilo, etc.).
 - **Plan-First Strategy:** Always start with a `PLAN.md` containing verifiable, realistic milestones before writing any application source code.
@@ -41,8 +42,9 @@ graph TD
 ## Process
 
 ### 1. Analyze and Infer
-1. Check if the directory is empty or contains existing configuration files (e.g., `package.json`, `pyproject.toml`, `go.mod`, etc.).
-2. Deduce the target tech stack. If unclear, prompt the user with a few concise options.
+1. **Directory Assessment:** Scan the target directory for pre-existing configurations (e.g., `package.json`, `pyproject.toml`, `go.mod`, etc.) or files.
+2. **Ambiguity Assessment:** Evaluate if there is ambiguity regarding the core tech stack/language, frameworks (e.g., React vs. Next.js vs. Vue, or FastAPI vs. Django), or core architectural requirements (e.g., database, auth, hosting).
+3. **Active Prompting:** If any of the above are ambiguous or unspecified, you must use the questioning tool or prompt the user with highly specific, concise multiple-choice options before executing any scripting or file creation.
 
 ### 2. Run the Bootstrap Script
 Run the automated python script to generate the physical directory tree and default files:
@@ -64,6 +66,7 @@ git status && ls -la
 ```
 
 ## Common Pitfalls
-- **Overwriting Work:** Destroying existing user code during the setup of a pre-existing directory.
+- **The Guessing Trap:** Proceeding with standard templates or stacks when the user's intent is ambiguous, leading to throwaway work, misconfigured directories, and out-of-sync plans.
+- **Overwriting Work:** Destroying existing user code during the setup of a pre-existing directory without asking the user for conflict resolution instructions first.
 - **Template Bloat:** Creating folder structures (e.g., deeply nested `domain/application/infrastructure` directories) before a single line of actual feature code is written. Keep it minimal first.
 - **Generic Gitignore:** Forgetting to configure stack-specific exclusions, leading to commit pollution (e.g., committing `node_modules` or `.venv`).
