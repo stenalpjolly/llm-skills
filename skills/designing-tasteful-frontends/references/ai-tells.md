@@ -10,6 +10,10 @@ This reference document catalogs the visual, structural, and content-level signa
 *   **No oversaturated accents:** Saturation for accents must remain under 80% to blend naturally with neutral tones.
 *   **No excessive gradient text:** Avoid massive headlines colored with horizontal/diagonal gradients.
 *   **No custom mouse cursors:** Banned due to poor performance and negative accessibility impact.
+*   **No harsh, dark black shadows:** Banned: high-opacity, dark, blurry black shadows (e.g., `shadow-[0_10px_30px_rgba(0,0,0,0.4)]`). Replace with highly-diffused, ambient, low-opacity shadows (under 8% opacity).
+*   **No unstyled default focus outlines:** Banned: leaving accessibility styles to the browser defaults. All clickable controls must implement custom, aesthetic `focus-visible` styles (e.g., `focus-visible:ring-2 focus-visible:ring-offset-2`).
+*   **No flat, elevation-free dark themes:** Banned: inverting color schemes into flat `#121212` backgrounds with flat containers. Dark themes must follow the elevation-lightening Depth Model, raising surfaces by progressively lightening background grays.
+*   **No incomplete button interaction states:** Banned: designing buttons with only default and hover styles. Every button must handle the entire 5-state matrix, including an active pressed state (`active:scale-[0.98]`), styled focus, and distinct disabled states.
 
 ---
 

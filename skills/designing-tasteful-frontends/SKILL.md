@@ -99,6 +99,23 @@ You must proactively override the standard AI defaults. Apply the following stri
 *   **Section Repetition Ban:** A landing page with 8 sections must use at least 4 different layout families. Max 2 consecutive "left-image/right-text" zig-zag layouts.
 *   **Eyebrow Restraint:** An uppercase tracking eyebrow is allowed on **at most 1 per 3 sections** (including the hero). Count them across all sections: $\text{count} \le \lceil \text{sections} / 3 \rceil$.
 
+### 3.D Systematic Spacing & Interaction Physics
+*   **The 8pt Grid Discipline:** All paddings, margins, gaps, and structural heights/widths must conform strictly to multiples of 8px (or 4px for fine micro-spacing, e.g., `1 unit = 4px` in Tailwind). Avoid arbitrary values or odd spacing increments.
+*   **The 5-State Control Matrix:** All clickable or interactive elements (buttons, inputs, links) must support and style five distinct states:
+    1.  *Default:* Normal appearance with clear visual signifiers (color, border, or diffused shadow) indicating clickability.
+    2.  *Hover:* Subtle change in background opacity/hue (`hover:bg-zinc-100`), small scale lift (`hover:scale-[1.01]`), or directional translation.
+    3.  *Active/Pressed:* Real haptic click response via scale compression (`active:scale-[0.98]`).
+    4.  *Focused:* Clear, highly-visible keyboard focus rings (`focus-visible:ring-2 focus-visible:ring-offset-2`). Default browser outlines are banned.
+    5.  *Disabled:* Grayed-out design (`opacity-50`), removal of hover transforms, and explicit `cursor-not-allowed pointer-events-none`.
+*   **60-30-10 Color Allocation:** Maintain a strict visual hierarchy using balanced colors:
+    *   *60% (Dominant Neutral):* Main canvas backgrounds and structural shells (e.g., `bg-zinc-50` / `bg-zinc-950`).
+    *   *30% (Secondary):* Card/surface backgrounds, borders, dividers, secondary text (e.g., `bg-white`, `border-zinc-200`, `text-zinc-500`).
+    *   *10% (Accent):* Highly targeted interactive actions, primary CTAs, active states, and focal highlights.
+*   **Dark Mode Elevation-Lightening:** When rendering in dark themes, mimic real-world lighting by progressively lightening elevated surfaces:
+    *   Level 0 (Background Canvas): Deepest dark tone (`bg-zinc-950`).
+    *   Level 1 (Card Panels/Surfaces): Slightly lighter surface tone (`bg-zinc-900`) with micro-borders.
+    *   Level 2 (Overlays/Modals/Dropdowns): Lightest surface tone (`bg-zinc-800` or `bg-zinc-850`) combined with a soft ambient shadow and inner top highlights.
+
 ---
 
 ## 4. Choreographed Motion & Interaction
@@ -180,6 +197,7 @@ For detailed specifications, visual vocabularies, and implementation guides, con
 *   **[aesthetic-minimalist-editorial.md](file:///Users/stenalpjolly/github/Experiments/llm-skills/skills/designing-tasteful-frontends/references/aesthetic-minimalist-editorial.md):** Notion/Linear-style warm bone monochrome + spot pastel aesthetic.
 *   **[aesthetic-industrial-brutalist.md](file:///Users/stenalpjolly/github/Experiments/llm-skills/skills/designing-tasteful-frontends/references/aesthetic-industrial-brutalist.md):** Swiss print / CRT telemetry zero-radius brutalist aesthetic.
 *   **[workflow-image-to-code.md](file:///Users/stenalpjolly/github/Experiments/llm-skills/skills/designing-tasteful-frontends/references/workflow-image-to-code.md):** Complete image-first visual design-to-code pipeline.
+*   **[agent-ready-ui.md](file:///Users/stenalpjolly/github/Experiments/llm-skills/skills/designing-tasteful-frontends/references/agent-ready-ui.md):** Architectural rules for building highly semantic, accessible, and AI-navigable/agent-ready structures.
 
 ---
 
@@ -204,3 +222,11 @@ Run this mechanical check before outputting any code. **If any box fails, the ou
 - [ ] **Hardware Acceleration**: Only `transform` and `opacity` are animated?
 - [ ] **Reduced Motion**: All animations wrapped under a prefers-reduced-motion check?
 - [ ] **GPU Protection**: Grain/noise textures placed only on fixed, `pointer-events-none` overlays, never on scrolling containers?
+- [ ] **8pt Spacing Discipline**: All gaps, padding, and margins conform strictly to multiples of 4px/8px (e.g., `p-2`, `gap-4`, `py-24`)?
+- [ ] **Interactive 5-State Matrix**: All buttons, links, and inputs support and explicitly style five distinct states (Default signifier, Hover color/transform, Active scale compression `active:scale-[0.98]`, Focus-visible styled ring, and Disabled styles)?
+- [ ] **60-30-10 Color Balance**: Brand color ratio maintains 60% dominant neutral (canvas ground), 30% secondary (borders, surfaces, support text), and 10% accent maximum?
+- [ ] **Dark Mode Surface Elevation**: In dark mode, elevated surfaces (modals, dropdowns, nested cards) are progressively lighter than the base canvas (`bg-zinc-950` -> `bg-zinc-900` -> `bg-zinc-800`) to simulate depth and light behavior?
+- [ ] **Agent-Ready Semantics**: Page structure uses correct landmarks (<main>, <nav>, <header>), sequential headings, and native buttons or interactive links (never <div> click triggers)?
+- [ ] **Deterministic Data Anchors**: Interactive targets and main interactive modules feature stable `data-agent="..."` attributes for robust LLM/agent automation?
+- [ ] **Accessible Label Completeness**: Every image has contextual alt text, and icon-only components feature visually-hidden text labels or clear `aria-label` definitions?
+- [ ] **Strategic Product Alignment**: The "Design Read" is accompanied by a brief storytelling rationale justifying the layout patterns based on high-agency product conversions and user flows?

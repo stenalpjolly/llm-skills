@@ -117,3 +117,115 @@ export function RevealStagger({ items, className = "grid gap-6" }: RevealStagger
 }
 ```
 Use this for testimonial walls, logo rows, and feature grids. Do not mix GSAP and Motion within the same component subtree.
+
+---
+
+## 5. Component Hierarchies, Shadows & Overlay Paradigms
+
+### 5.A Three-Tier Button System (Tailwind)
+Interactive actions should convey strict importance hierarchies. Do not place identical button styles side-by-side.
+
+```tsx
+// Tier 1: Primary Action Button (Solid fill, prominent contrast, exactly one per primary hero/card)
+export function PrimaryButton({ children, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      {...props}
+      className="inline-flex items-center justify-center rounded-lg bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-50 transition-all duration-200 hover:bg-zinc-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200 dark:focus-visible:ring-zinc-300 dark:focus-visible:ring-offset-zinc-950"
+    >
+      {children}
+    </button>
+  );
+}
+
+// Tier 2: Secondary Action Button (Subtle border, light fill, perfect for supporting actions)
+export function SecondaryButton({ children, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      {...props}
+      className="inline-flex items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 py-2.5 text-sm font-medium text-zinc-700 transition-all duration-200 hover:bg-zinc-50 hover:text-zinc-900 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800/80 dark:hover:text-zinc-50 dark:focus-visible:ring-zinc-300 dark:focus-visible:ring-offset-zinc-950"
+    >
+      {children}
+    </button>
+  );
+}
+
+// Tier 3: Tertiary Action Button (Borderless text, minimal clutter, excellent for Cancel/Back actions)
+export function TertiaryButton({ children, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      {...props}
+      className="inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-medium text-zinc-500 transition-all duration-200 hover:text-zinc-900 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:text-zinc-400 dark:hover:text-zinc-50 dark:focus-visible:ring-zinc-300 dark:focus-visible:ring-offset-zinc-950"
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+### 5.B Ambient Tinted Shadows
+Avoid dark, muddy, high-opacity black shadows. Instead, use soft, multi-layered, diffused shadows containing a microscopic tint of the background color to emulate natural light scattering:
+
+*   **Extra-Soft Component Shadow:**
+    `shadow-[0_8px_30px_rgba(0,0,0,0.015),0_1px_2px_rgba(0,0,0,0.01)]`
+*   **Elevated Floating Surface (Cards/Grids):**
+    `shadow-[0_20px_50px_rgba(0,0,0,0.03),0_1px_3px_rgba(0,0,0,0.02)]`
+*   **Highly Elevated Overlays (Dropdowns/Modals):**
+    `shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.02)]`
+*   **Dark Mode Highlight Ring (Instead of Shadow):**
+    Because shadows are invisible on pure dark backgrounds, rely on highly detailed inner highlights and low-opacity borders:
+    `border border-zinc-800/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.03)]`
+
+### 5.C Overlay Architecture (Modals & Tooltips)
+
+Modals demand full user attention and require physical backdrop distortion. Tooltips require hovering safety zones and entry delay filters:
+
+```tsx
+"use client";
+import { motion, AnimatePresence } from "motion/react";
+
+// Modal Overlay: Restrained scale animation with a high-blur backdrop mask
+export function ModalOverlay({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop Mask */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+          />
+
+          {/* Elevated Modal Content (Note the Level 2 Dark Mode Elevation bg-zinc-850) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 8 }}
+            transition={{ type: "spring", duration: 0.4, bounce: 0 }}
+            className="relative z-10 w-full max-w-md overflow-hidden rounded-xl border border-zinc-200/80 bg-white p-6 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] dark:border-zinc-800/80 dark:bg-zinc-900"
+          >
+            {children}
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+// Tooltip Overlay: Lightweight text hover with spring transition
+export function Tooltip({ text, children }: { text: string; children: React.ReactNode }) {
+  return (
+    <div className="group relative inline-block">
+      {children}
+      <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 w-max max-w-xs -translate-x-1/2 scale-95 opacity-0 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100">
+        <div className="rounded bg-zinc-950 px-2.5 py-1.5 text-xs font-medium text-zinc-50 shadow-md dark:bg-zinc-50 dark:text-zinc-950">
+          {text}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
