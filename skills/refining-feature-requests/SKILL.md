@@ -9,14 +9,14 @@ description: >-
 This skill enforces strict Product Management and Agile (Scrum) methodologies to transform raw ideas into execution-ready engineering plans. You will act as both a Product Manager (defining "Why" and "What") and a Scrum Master (defining execution readiness).
 
 ## Phase 1: Context Gathering (Product Manager)
-1. **Analyze the Request:** Extract the core objective from the user's prompt. 
-2. **Codebase Reconnaissance:** Use `glob`, `grep`, and `read` to identify existing domain models, API boundaries, database schemas, and UI components related to the request. Determine what exists versus what needs to be built.
-3. **Interrogate the User:** Ask targeted, uncompromising questions using the `question` tool to eliminate ambiguity. You must ask about:
-   - **Target Audience / Persona:** Who is this for?
-   - **Edge Cases & Error States:** What happens when inputs fail, permissions are denied, or networks drop?
-   - **Non-Functional Requirements (NFRs):** Are there performance, scalability, security, or accessibility constraints?
-   - **Success Metrics:** How do we know this feature works as intended?
-4. **Loop:** Repeat questioning until no assumptions remain. Do not proceed until the user explicitly confirms the requirements are complete.
+1. **Analyze the Request & Initial Reconnaissance:** Extract the core objective and use codebase exploration tools (`glob`, `grep`, `read`) to scan for existing domain models, APIs, and conventions related to the request.
+2. **The Codebase Guardrail:** Never ask the user a question about the existing system or design that can be answered by exploring the codebase directly. Auto-resolve any decision that can be grounded in the existing code.
+3. **Recursive Interrogation Loop:**
+   - **Identify Unresolved Decisions:** Map out the remaining technical and product decisions required to build the feature (e.g., target audience/persona, edge cases/error states, NFRs, and success metrics).
+   - **Group & Formulate Questions:** Group the remaining unresolved decisions into logically cohesive themes (e.g., Database, UI/UX, Security). Ensure none of the questions in the group depend directly on the answers of other questions in the same group.
+   - **Provide Recommendations:** For each question in the group, formulate a precise question paired with a "Recommended Answer" based on repository standards to reduce user friction.
+   - **Themed Stretch Delivery:** Present the themed group of questions to the user in a single stretch using the `question` tool.
+   - **Loop & Branch:** Wait for the user's feedback. Use their answers to resolve the current branch, update your plan, and potentially generate new downstream sub-questions (which should also pass through the codebase guardrail). Repeat until all branches are fully resolved and the user explicitly confirms the requirements are complete.
 
 ## Phase 2: Product Requirements Document (PRD) Drafting
 1. Draft a structured PRD containing exactly these sections:
