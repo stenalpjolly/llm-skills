@@ -1,6 +1,7 @@
 ---
 name: scrutinizing-code-changes
-description: Outsider-perspective end-to-end review of a plan, PR, or code change. First questions intent and whether a simpler/more elegant approach would achieve the same goal, then traces the actual code path (not just the diff) to verify the change does what it claims. Output is concise, actionable, and every call carries its rationale. Trigger on /scrutinize and proactively whenever the user asks to review, audit, sanity-check, or get a second opinion on a plan, PR, diff, design doc, or proposed code change.
+description: >-
+  Outsider-perspective end-to-end review of a plan, PR, or code change. First questions intent and whether a simpler/more elegant approach would achieve the same goal, then traces the actual code path (not just the diff) to verify correctness, style conventions, and best practices. Output is concise, actionable, and constructive. Trigger on /scrutinize and proactively whenever the user asks to review, audit, sanity-check, or get a second opinion on a plan, PR, diff, design doc, or proposed code change.
 ---
 
 # Scrutinize
@@ -11,14 +12,16 @@ Stand outside the change and ask whether it should exist at all, then verify it 
 
 - **Outsider.** Forget who wrote it and why they think it's right. Read the artifact cold.
 - **End-to-end, not diff-local.** The diff is the entry point, not the scope. Follow the call graph through real code paths.
+- **Constructive & Polite.** Balance rigorous technical scrutiny with professional courtesy, highlighting genuine strengths and positive aspects.
 - **Actionable, concise, with rationale.** Every finding states *what to change*, *why*, and *what evidence* led you there. No filler, no restating the diff back.
 
 ## Workflow
 
 Run these in order. Do not skip ahead.
 
-### 1. Intent — what is this actually trying to do?
+### 1. Intent & Summary — what is this actually trying to do?
 
+- Provide a concise summary of the proposed changes.
 - State the goal in one sentence, in your own words. If you cannot, the artifact is underspecified — say so and stop.
 - Ask: **is there a simpler, smaller, or more elegant way to achieve the same goal?** Consider:
   - Doing nothing (is the problem real / load-bearing?).
@@ -43,15 +46,20 @@ For each claim the change/plan makes, answer:
 - **What inputs / states would break it?** Edge cases, concurrent callers, error paths, partial failures, retries, empty/null/unicode/huge inputs, ordering assumptions.
 - **What does it silently change?** Performance, error semantics, observability, contract for other callers, on-disk / on-wire format.
 - **How is it tested?** Do the tests actually exercise the traced path, or do they pass while skipping it (mocks that hide the bug, asserts on intermediate state, happy path only)?
+- **What standards or style conventions are violated?** Check for language-specific standards (e.g., PEP 8 for Python, Google Style Guide).
+- **What best practices could be improved?** Assess readability, maintainability, modularity, and opportunities to simplify redundant structures.
 
 ### 4. Report
 
-Output one tight section per finding. Order by severity (blocker → major → nit). For each:
+Structure your report clearly as follows:
 
-- **Finding** — one sentence, specific. Cite `file:line` when applicable.
-- **Why it matters** — the consequence, not the principle.
-- **Evidence** — the trace step or input that exposes it.
-- **Suggested change** — concrete, minimal.
+1. **Executive Summary**: A concise summary of the changes and overall assessment.
+2. **Strengths & Positive Aspects**: Highlight genuinely elegant solutions, robust test coverage, or clean patterns.
+3. **Key Issues & Improvements**: One tight section per finding, ordered by severity (blocker → major → nit). For each:
+   - **Finding** — one sentence, specific. Cite `file:line` when applicable.
+   - **Why it matters** — the consequence, not the principle.
+   - **Evidence** — the trace step or input that exposes it.
+   - **Suggested change** — concrete, minimal.
 
 Close with a one-line verdict: ship / fix-then-ship / rework / reject — with the single biggest reason.
 
@@ -61,5 +69,6 @@ Close with a one-line verdict: ship / fix-then-ship / rework / reject — with t
 - **Cite or it didn't happen.** Every claim about the code references a specific path, file, or line. No vague "this might break under load."
 - **Distinguish claim from verification.** "The PR says X" and "I traced X and confirmed / refuted it" are different — keep them separate in the output.
 - **One simpler-alternative pass is mandatory.** Even on small changes, spend one breath asking if the whole thing is necessary. Skip only if the user explicitly says "don't question scope."
-- **Don't pad with style nits when there's a structural problem.** If step 1 or step 2 surfaces a real issue, lead with it; defer nits or drop them.
-- **No flattery, no hedging.** "This is a great PR but..." adds nothing. State the finding.
+- **Substance over Minor Nits.** Focus on substantial issues, logic, correctness, and best practices. Do not pad with minor style nits unless they violate a strict project style guide.
+- **Constructive Politeness over Empty Flattery.** Highlight genuine, tangible positive aspects of the code as strengths, but keep feedback technically direct and professional.
+- **Escalate Ambiguity.** If the code is too complex, ambiguous, or lacks context, stop and ask the author for clarification.

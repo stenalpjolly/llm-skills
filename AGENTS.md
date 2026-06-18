@@ -43,6 +43,12 @@ Different AI agent and assistant frameworks have specific conventions for loadin
 - When tasked with specialized domain-specific operations, agents must search the `skills/` or `builtin/` directories.
 - Look for defined workflows, read the corresponding `SKILL.md` (or other documentation files), and load/execute the specialized steps directly.
 
+### 5. Constructive and Rigorous Code Reviews
+- Balance deep, path-tracing technical scrutiny (verifying correctness, edge cases, exceptions, performance, and best practices) with constructive professional courtesy.
+- Highlight genuine positive implementation details (strengths, elegant patterns, or thorough tests).
+- Direct style/linting comments at standard coding conventions (e.g., PEP 8, Google Style Guides) but avoid padding reviews with minor, formatting-only nits unless strict compliance is required.
+- If a change lacks critical context or is overly complex, explicitly stop and ask for clarification.
+
 ---
 
 ## Karpathy Guidelines
