@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/stenalpjolly/llm-skills/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/skills-23--active-success" alt="Skills Active"></a>
+  <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/skills-26--active-success" alt="Skills Active"></a>
   <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/agent--support-Kilo--enabled-orange" alt="Agent Support"></a>
   <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/style-Strands--SDK-blueviolet" alt="Documentation Style"></a>
 </p>
@@ -123,6 +123,7 @@ The skills within this repository are designed to compose seamlessly into specia
 | :--- | :--- | :--- |
 | `implementing-test-driven-issue-resolution` | [`skills/implementing-test-driven-issue-resolution`](skills/implementing-test-driven-issue-resolution) | Converts user assumptions, feature requests, or bug reports into verified, test-driven code changes. |
 | `debugging-with-mantras` | [`skills/debugging-with-mantras`](skills/debugging-with-mantras) | Four-mantra debugging discipline—reproduce, trace the fail path, falsify the hypothesis, cross-reference every breadcrumb. |
+| `resolving-merge-conflicts` | [`skills/resolving-merge-conflicts`](skills/resolving-merge-conflicts) | Resolves in-progress git merge or rebase conflicts by locating conflicting files and tracing original intents. |
 | `scrutinizing-code-changes` | [`skills/scrutinizing-code-changes`](skills/scrutinizing-code-changes) | Outsider-perspective end-to-end review of a plan, PR, or code change to verify intent and code paths. |
 | `writing-post-mortems` | [`skills/writing-post-mortems`](skills/writing-post-mortems) | Writes the canonical engineering record of a fixed bug—root cause, mechanism, fix, validation, and prevention. |
 
@@ -132,7 +133,7 @@ The skills within this repository are designed to compose seamlessly into specia
 | `scanning-codebase` | [`skills/scanning-codebase`](skills/scanning-codebase) | Scans a Next.js directory to map out routes, components, and API endpoints into a structured JSON format. |
 | `migrating-react-to-angular` | [`skills/migrating-react-to-angular`](skills/migrating-react-to-angular) | Converts React components (.jsx/.tsx) into standalone Angular 17+ components using Angular Material. |
 | `migrating-nextjs-to-python` | [`skills/migrating-nextjs-to-python`](skills/migrating-nextjs-to-python) | Translates Next.js JavaScript/TypeScript API routes into clean FastAPI Python backend endpoints. |
-| `validating-migration-builds` | [`skills/validating-migration-builds`](skills/validating-migration-builds) | Provides build and lint validation checks for migrated Angular and Python code. |
+| `validating-workspace-builds` | [`skills/validating-workspace-builds`](skills/validating-workspace-builds) | Provides build and lint validation checks for the active workspace code. |
 
 ### 🔍 UI/UX & Web Standards Auditing
 | Skill Name | Location | Description |
@@ -147,8 +148,10 @@ The skills within this repository are designed to compose seamlessly into specia
 | Skill Name | Location | Description |
 | :--- | :--- | :--- |
 | `capturing-knowledge` | [`skills/capturing-knowledge`](skills/capturing-knowledge) | Extracts and categorizes best practices, workflows, and project conventions from a conversation context. |
+| `generating-mermaid-diagrams` | [`skills/generating-mermaid-diagrams`](skills/generating-mermaid-diagrams) | Generates syntax-valid, render-safe Mermaid.js diagrams (flowcharts, sequence diagrams, ERDs, Gantt charts). |
 | `translating-for-management` | [`skills/translating-for-management`](skills/translating-for-management) | Rewrites engineer-to-engineer content for engineering-org leadership and shapes it for specific channels (JIRA, Slack, etc.). |
 | `updating-readme` | [`skills/updating-readme`](skills/updating-readme) | Standardizes how agents update and manage README.md files, adopting the Deep Insight/Strands SDK style. |
+| `writing-great-skills` | [`skills/writing-great-skills`](skills/writing-great-skills) | Reference for writing and editing skills well—the vocabulary and principles that make a skill predictable. |
 
 ---
 
@@ -168,7 +171,7 @@ Once the backlog is established, the following skills execute the translation an
 
 1. **`migrating-react-to-angular`**: Converts React/JSX components into modern, standalone Angular 17+ components using Angular Material. It uses a Python scaffolding helper to generate syntactically correct boilerplate first, and leverages structured mapping references to map state hooks to Angular Signals and React components to Material standards cleanly.
 2. **`migrating-nextjs-to-python`**: Converts serverless Next.js JavaScript/TypeScript API routes into high-performance, type-hinted FastAPI backend endpoints. It translates TypeScript interfaces to Pydantic schemas via automated script-based schema generation, implements SQLModel handlers, and translates JS errors to FastAPI HTTPExceptions.
-3. **`validating-migration-builds`**: Acts as a self-correcting validation check loop. It runs local builders, compilers, and linters (such as Angular component compilation and Python syntax checks) to catch and parse errors, allowing the agent to dynamically repair code failures prior to committing changes.
+3. **`validating-workspace-builds`**: Acts as a self-correcting validation check loop. It runs local builders, compilers, and linters (such as Angular component compilation and Python syntax checks) to catch and parse errors, allowing the agent to dynamically repair code failures prior to committing changes.
 
 ### 🧪 Quality Assurance & Standards Audit Pipeline
 
