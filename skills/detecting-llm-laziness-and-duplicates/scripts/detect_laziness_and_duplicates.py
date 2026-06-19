@@ -135,6 +135,64 @@ def is_test_file(filepath):
             '.test.' in os.path.basename(path_lower) or 
             '.spec.' in os.path.basename(path_lower))
 
+def find_license_header_end(lines):
+    """
+    Finds the index of the first line after the license/copyright header at the start of the file.
+    A license header is defined as a contiguous block of comment or empty lines at the very top
+    of the file that contains keywords like 'copyright', 'license', 'licensed', etc.
+    """
+    if not lines:
+        return 0
+
+    has_license = False
+    license_keywords = {'copyright', 'license', 'licensed', 'all rights reserved', 'apache', 'gpl', 'mit', 'mozilla'}
+    
+    # Scan up to the first 100 lines for license keywords to be safe and efficient
+    limit = min(len(lines), 100)
+    for i in range(limit):
+        line_lower = lines[i].lower()
+        if any(kw in line_lower for kw in license_keywords):
+            has_license = True
+            break
+            
+    if not has_license:
+        return 0
+
+    comment_markers = ('#', '//', '/*', '*/', '*', '"""', "'''")
+    end_idx = 0
+    in_block_comment = False
+    
+    for idx, line in enumerate(lines[:100]):
+        stripped = line.strip()
+        if not stripped:
+            end_idx = idx + 1
+            continue
+            
+        if '/*' in stripped:
+            in_block_comment = True
+        if '"""' in stripped or "'''" in stripped:
+            in_block_comment = not in_block_comment
+            end_idx = idx + 1
+            continue
+            
+        is_comment_line = (
+            stripped.startswith(comment_markers) or 
+            in_block_comment or
+            stripped.endswith('*/')
+        )
+        
+        if '*/' in stripped:
+            in_block_comment = False
+            end_idx = idx + 1
+            continue
+            
+        if is_comment_line:
+            end_idx = idx + 1
+        else:
+            break
+            
+    return end_idx
+
 def detect_clones(file_lines_map, min_dup_lines=6):
     """
     Detects structural clones across scanned files using a sliding window diagonal-merging technique.
@@ -144,7 +202,10 @@ def detect_clones(file_lines_map, min_dup_lines=6):
     file_non_trivial = {}
     for filepath, lines in file_lines_map.items():
         non_trivial = []
+        license_end_idx = find_license_header_end(lines)
         for idx, line in enumerate(lines):
+            if idx < license_end_idx:
+                continue
             norm = normalize_line(line)
             if norm not in TRIVIAL_NORMALIZED and len(norm) > 2:
                 non_trivial.append((idx + 1, norm, line.rstrip('\n')))
