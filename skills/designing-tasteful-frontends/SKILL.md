@@ -6,7 +6,7 @@ description: >-
   to official design systems, and run a strict 50+ item pre-flight checklist. Lazy-loads specialized aesthetic
   profiles (Soft Tactile, Minimalist Editorial, Industrial Brutalist) and the Image-to-Code visual workflow.
   Bans common AI tells like purple glows, Inter font defaults, em-dashes, and repetitive three-card grids.
-  Use when building highly aesthetic web frontends. Don't use for data-heavy dashboards or backend APIs.
+  Use when building highly aesthetic web frontends. Don't use for data-heavy dashboards, backend APIs, or strict brand compliance tasks like accessibility checks or layout standardizing—use `applying-marketing-web-standards` for those.
 ---
 
 # Designing Tasteful Frontends: Anti-Slop Web Architecture

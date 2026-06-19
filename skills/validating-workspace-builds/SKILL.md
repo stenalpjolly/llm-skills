@@ -1,10 +1,10 @@
 ---
-name: validating-migration-builds
+name: validating-workspace-builds
 description: >-
-  Provides build and lint validation checks for migrated Angular and Python code. Use when self-correcting compilation failures, syntax errors, or linting violations in migrated modules. Don't use for drafting GitHub issue templates, codebase scans, or writing the code translation itself.
+  Provides build and lint validation checks for the active workspace. Use when self-correcting compilation failures, syntax errors, or linting violations across codebase files. Invoke a standardized validation script before completion to promote test-driven development. Don't use for drafting GitHub issue templates or codebase scans.
 ---
 
-# Validating Migration Builds
+# Validating Workspace Builds
 
 This skill executes self-correcting validation loops by running local builders/compilers, parsing error streams, and presenting actionable fixes.
 

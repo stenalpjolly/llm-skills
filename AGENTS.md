@@ -50,6 +50,12 @@ Different AI agent and assistant frameworks have specific conventions for loadin
 - Direct style/linting comments at standard coding conventions (e.g., PEP 8, Google Style Guides) but avoid padding reviews with minor, formatting-only nits unless strict compliance is required.
 - If a change lacks critical context or is overly complex, explicitly stop and ask for clarification.
 
+### 6. Parallel Execution and Subagents
+- **Identify Parallel Options**: During the **Planning** phase, explicitly evaluate whether the task can be broken down into concurrent components (e.g., independent file refactoring, concurrent research, or running multiple analyses).
+- **Leverage Subagents**: Use the `invoke_subagent` tool as much as possible to delegate independent tasks to background subagents so they can work in parallel. 
+- **Custom Subagents**: If a specialized role is needed that isn't covered by existing subagents, use the `define_subagent` tool to dynamically create a specialized subagent for the task before invoking it.
+- **Asynchronous Workflow**: After invoking subagents, do not poll or wait synchronously. Proceed with other independent work or stop calling tools to let the system wake you when their results are ready.
+
 ---
 
 ## Karpathy Guidelines

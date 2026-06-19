@@ -4,7 +4,7 @@ description: >-
   Provides guidelines, visual specs, and accessibility rules for Google-branded marketing websites.
   Use when building or modifying web pages, landing pages, or components (such as buttons, forms, carousels, or chips)
   to ensure they conform to Google's layout, design, accessibility, and legal standards.
-  Don't use for mobile native app development or generic backend service design.
+  Don't use for mobile native app development, generic backend service design, or premium creative visual styling (micro-animations, artistic designs)—use `designing-tasteful-frontends` for that.
 ---
 
 # Applying Marketing Web Standards

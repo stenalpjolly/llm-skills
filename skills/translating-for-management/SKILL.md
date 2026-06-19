@@ -1,6 +1,6 @@
 ---
 name: translating-for-management
-description: Rewrite engineer-to-engineer content for engineering-org leadership (VPs, directors, PMs, release managers, execs in an engineering-savvy company) and shape it for the channel it is going to — JIRA comment, Slack post, async standup line, email, or meeting talking-points. Trigger when the user asks to write/rewrite for management / exec / VP / director / PM / release manager, asks for an "executive summary / leadership update / status update", says "make this less technical / less jargony", or asks for a slack / email / standup / meeting version of work originally written engineer-to-engineer.
+description: Rewrite engineer-to-engineer content for engineering-org leadership (VPs, directors, PMs, release managers, execs in an engineering-savvy company) and shape it for the channel it is going to — JIRA comment, Slack post, async standup line, email, or meeting talking-points. Trigger when the user asks to write/rewrite for management / exec / VP / director / PM / release manager, asks for an "executive summary / leadership update / status update", says "make this less technical / less jargony", or asks for a slack / email / standup / meeting version of work originally written engineer-to-engineer. Also trigger seamlessly after `writing-post-mortems` if leadership communication is required.
 ---
 
 # Management Talk
@@ -17,6 +17,7 @@ Use this any time engineering content needs to flow up the org, sideways into pr
 - "send a slack update / standup note / email" *about a piece of engineering work*
 - "executive summary" / "exec summary" / "leadership update" / "status update"
 - "talking points for [meeting]" *based on an engineering update*
+- **Post-mortem Follow-up:** Directly after finishing `writing-post-mortems`, offer to translate the RCA into a leadership summary.
 
 If the channel is unclear after the trigger, ask one short question — *"JIRA, Slack, standup, or email?"* — and stop.
 
