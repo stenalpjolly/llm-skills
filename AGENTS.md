@@ -32,6 +32,7 @@ Different AI agent and assistant frameworks have specific conventions for loadin
   2. **Searching**: Use precise content and pattern search tools (like glob and grep).
   3. **Implementing**: Apply clean, precise replacements or additions.
   4. **Validating**: Run project tests, linters, and compilers to verify changes.
+- **Interactive Questions**: When asking the user to choose between multiple options, decisions, or candidate rules, always use the `ask_question` tool with appropriate options because it presents a structured interactive modal that avoids conversational parsing errors and provides a cleaner user experience.
 
 ### 3. Modularity and Coding Standards
 - Write clean, modular, and self-documenting code that strictly conforms to the repository's established style.
