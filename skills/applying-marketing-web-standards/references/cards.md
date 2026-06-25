@@ -143,3 +143,21 @@ Interactive cards acting as links must provide smooth and distinct hover transit
 *   **Avoid Nested Link Traps**: Do not embed multiple independent click targets inside the card if using the full-card click overlay hack, as it breaks HTML validation and keyboard focus flow.
 *   **Reduced Motion**: On users requesting reduced motion, disable the `transform: translateY(-4px)` lift translation.
 *   **Focus Ring**: Ensure focus indicators encapsulate the entire card boundary when nested tab elements receive focus.
+
+---
+
+## 5. Angular Material Card Header Alignments
+
+When creating custom flex headers inside Angular Material `<mat-card-header>` (e.g. to space section titles on the left and active chips or status badges on the right):
+
+### 5.1 Content Projection Centering Gotchas
+*   **Problem:** If you wrap the `<mat-card-title>` and `<mat-card-subtitle>` elements inside a custom wrapper `<div>` (to group them or style them together), the Angular compiler will not match them for direct projection. 
+*   This leaves an empty `.mat-mdc-card-header-text` (or `.mat-card-header-text`) container in the DOM. Under a flex layout (`justify-content: space-between`), this empty container acts as a flex child, pushing the title wrapper into the center of the header.
+*   **Fix:** Hide the empty projected text wrapper explicitly in your CSS:
+    ```css
+    .flex-header .mat-mdc-card-header-text,
+    .flex-header .mat-card-header-text {
+      display: none !important;
+    }
+    ```
+

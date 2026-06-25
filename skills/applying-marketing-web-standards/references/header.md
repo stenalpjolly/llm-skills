@@ -137,3 +137,34 @@ On smaller screen sizes (under `1024px`), navigation items must collapse into a 
 *   **Aria Expanded State**: The hamburger button must toggle `aria-expanded="true"` when the menu drawer is open, and `aria-expanded="false"` when closed.
 *   **Focus Trap**: Standard keyboard navigation (`Tab`) must remain locked inside the mobile navigation drawer when open. Focus must return to the Hamburger button on drawer close.
 *   **Aria Current**: Apply `aria-current="page"` to the link representing the active web page inside navigation lists.
+
+---
+
+## 5. Header Control Widgets & Toolbar Elements
+
+When integrating workspace selectors (like project switcher dropdowns) or status badges directly into the primary site header or section toolbars, follow these styling patterns to prevent cheap or cramped layouts:
+
+### 5.1 No Form Inputs in Toolbars
+*   **Anti-Pattern:** Do not use standard vertical form inputs, filled select input blocks (`mat-form-field`), or text fields inside headers. They introduce heavy form-specific lines and visual container boundaries that crowd the toolbar.
+*   **Best Practice:** Use a flat, borderless Material Button trigger that opens a floating menu overlay (`mat-menu`). 
+
+### 5.2 Pill-Shaped Control Alignment
+*   Design all adjacent controls (dropdown switchers, text badges, action links) as matching pill containers with fully rounded corners (`border-radius: 20px` or `100px`) and matching heights (typically `40px` for desktop).
+*   Structure the button label cleanly:
+    ```html
+    <button class="g-toolbar-btn">
+      <span class="g-btn-label">Label:</span>
+      <span class="g-btn-value">Selected Value</span>
+      <span class="g-btn-chevron">▼</span>
+    </button>
+    ```
+
+### 5.3 High Contrast on Saturated Toolbars
+*   When rendering controls on a primary-colored toolbar (e.g. Google Blue background), ensure all text values, prefixes, and chevron arrow icons are white (`#FFFFFF`) or semi-transparent white (`rgba(255,255,255,0.7)`).
+*   Use light semi-transparent background fills (`rgba(255,255,255,0.08)`) and border lines (`rgba(255,255,255,0.2)`) to separate the controls cleanly without adding arbitrary new colors.
+
+### 5.4 Dropdown Menu Alignment
+*   When a dropdown trigger button is aligned on the right half of the toolbar, always configure the dropdown overlay/menu panel to align with the **right edge** of the button trigger.
+*   **Implementation (Angular Material):** Use `xPosition="before"` on `<mat-menu>` to force the overlay to align with the right-hand boundary, preventing elements from clipping or flowing off-screen.
+
+
