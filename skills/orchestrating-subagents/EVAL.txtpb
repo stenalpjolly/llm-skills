@@ -1,0 +1,9 @@
+test_case {
+  name: "Orchestrate Subagents for Refactoring"
+  prompt: "Given a codebase with 3 components (Auth, Database, Logger), refactor them to use the new error handling system. Split the tasks in parallel and make sure to use ask_question if you need any clarification about design choices."
+  expected_actions: [
+    "invoke_subagent called with 3 subagents (Auth, Database, Logger) running in parallel",
+    "conductor thread goes idle",
+    "ask_question used to resolve any ambiguity during planning"
+  ]
+}

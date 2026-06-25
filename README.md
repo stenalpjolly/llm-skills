@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/stenalpjolly/llm-skills/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/skills-26--active-success" alt="Skills Active"></a>
+  <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/skills-27--active-success" alt="Skills Active"></a>
   <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/agent--support-Kilo--enabled-orange" alt="Agent Support"></a>
   <a href="https://github.com/stenalpjolly/llm-skills"><img src="https://img.shields.io/badge/style-Strands--SDK-blueviolet" alt="Documentation Style"></a>
 </p>
@@ -123,6 +123,7 @@ The skills within this repository are designed to compose seamlessly into specia
 | :--- | :--- | :--- |
 | `implementing-test-driven-issue-resolution` | [`skills/implementing-test-driven-issue-resolution`](skills/implementing-test-driven-issue-resolution) | Converts user assumptions, feature requests, or bug reports into verified, test-driven code changes. |
 | `debugging-with-mantras` | [`skills/debugging-with-mantras`](skills/debugging-with-mantras) | Four-mantra debugging discipline—reproduce, trace the fail path, falsify the hypothesis, cross-reference every breadcrumb. |
+| `orchestrating-subagents` | [`skills/orchestrating-subagents`](skills/orchestrating-subagents) | Orchestrates specialized subagents in parallel to keep the main thread idle and maximize concurrency. |
 | `resolving-merge-conflicts` | [`skills/resolving-merge-conflicts`](skills/resolving-merge-conflicts) | Resolves in-progress git merge or rebase conflicts by locating conflicting files and tracing original intents. |
 | `scrutinizing-code-changes` | [`skills/scrutinizing-code-changes`](skills/scrutinizing-code-changes) | Outsider-perspective end-to-end review of a plan, PR, or code change to verify intent and code paths. |
 | `writing-post-mortems` | [`skills/writing-post-mortems`](skills/writing-post-mortems) | Writes the canonical engineering record of a fixed bug—root cause, mechanism, fix, validation, and prevention. |
