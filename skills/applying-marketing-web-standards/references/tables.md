@@ -9,6 +9,7 @@ This reference defines the visual specs, column alignment, border options, and a
 Tables present structured comparative datasets (such as product specs, plans, storage limits, or price tiers) in neat row and column grids.
 
 *   **Row Height**: Vertical cell padding should be at least `12px` to `16px` to maintain a spacious, readable layout.
+*   **Breathing Room around Forms (The "Table Breathing Room" Rule)**: When table rows host form fields, select menus, or inline actions, increase cell padding to a minimum of `16px 12px` and use `vertical-align: middle` to prevent cramped elements, ensuring sufficient room for interactive form controls.
 *   **Dividers**: Standard horizontal rows are divided by `1px solid #DADCE0` (Gray 300) borders.
 *   **Header Row (thead)**: Styled in bold `Roboto Medium, 14px, #202124`. The header row background is often a flat light gray surface `#F8F9FA` (Gray 50).
 *   **Cell Typography**: `Roboto Regular, 14px, #5F6368` (Gray 700).

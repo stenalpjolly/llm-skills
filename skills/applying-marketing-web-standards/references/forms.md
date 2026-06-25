@@ -51,6 +51,18 @@ For numeric inputs, browser-native spinner buttons must be hidden to maintain a 
 }
 ```
 
+### 1.4 Content-Proportional Width (The "Content-Proportional Width" Rule)
+Input fields should visually match the maximum expected length of the data being inputted to avoid layout bloating and clarify the interface.
+*   **Ranking/Quantities**: For short numbers (e.g., final ranks or quantities 1-99), strictly constrain the input field's width.
+*   **Implementation**:
+    ```css
+    .g-input-dense-number {
+      max-width: 100px; /* Perfectly sized for a 1-3 digit rank/score */
+      text-align: center;
+      height: 40px; /* Dense 8px-grid component height */
+    }
+    ```
+
 ---
 
 ## 2. Checkboxes

@@ -25,6 +25,7 @@ Marketing pages must enforce a strict action hierarchy. Never place multiple sol
 *   **Primary Button (Solid)**: Background `#4285F4`, text `#FFFFFF`. Hover state: `#1A73E8`, active state: `#1557B0`. Focus: `2px` solid `#4285F4` with `2px` transparent offset.
 *   **Secondary Button (Outlined)**: Border `1px solid #DADCE0`, text `#1A73E8`. Hover: background `#F8F9FA` and border `#80868B`. Active: `#F1F3F4`.
 *   **Tertiary Button (Text CTA)**: Background transparent, text `#1A73E8`. Hover: `#F8F9FA` with underline. Active: `#E8F0FE`.
+*   **Danger Button (Outlined Red)**: Border `1px solid #DADCE0`, text `#EA4335` (Google Red). Hover: background `#FDF2F2` (Light Red), border `#EA4335`. Used for destructive or negative actions (The "Button Hierarchy" Rule).
 
 ---
 
@@ -89,6 +90,21 @@ Hyperlinks must be clearly identifiable from regular body copy to ensure rapid v
   background-color: #F8F9FA;
   border-color: #80868B;
 }
+.g-btn-danger {
+  background-color: #FFFFFF;
+  border-color: #DADCE0;
+  color: #EA4335;
+}
+.g-btn-danger:hover {
+  background-color: #FDF2F2;
+  border-color: #EA4335;
+}
+.g-btn:disabled,
+.g-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none; /* Prevents click events on links */
+}
 .g-btn:focus-visible {
   outline: 2px solid #4285F4;
   outline-offset: 2px;
@@ -116,6 +132,40 @@ Hyperlinks must be clearly identifiable from regular body copy to ensure rapid v
 .g-btn-link:hover .g-link-icon {
   transform: translateX(4px);
 }
+
+/* Circular Interactive Icon Button (The "Interactive Icon" Rule) */
+.g-icon-btn {
+  width: 40px; /* Aligns with 8px grid and touch targets */
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+.g-icon-btn:hover {
+  background-color: rgba(32, 33, 36, 0.04); /* Subtle brand gray hover */
+}
+.g-icon-btn:focus-visible {
+  outline: 2px solid #4285F4;
+  outline-offset: 2px;
+}
+```
+
+### 4.2 Screen-Reader-Safe Custom Triggers (The "Hidden Native Input" Rule)
+When triggering hidden browser controls (such as `<input type="file">`) from a custom button, do not use `display: none` or `visibility: hidden` directly on inputs that need keyboard access. Instead, use a screen-reader-only utility and trigger via JavaScript.
+
+```html
+<div class="g-upload-row">
+  <!-- Screen-reader accessible hidden native input -->
+  <input type="file" id="g-csv-input" class="sr-only" onchange="console.log(this.files)" />
+  <button class="g-btn g-btn-secondary" onclick="document.getElementById('g-csv-input').click()">
+    Choose CSV file
+  </button>
+</div>
 ```
 
 ---
@@ -123,5 +173,6 @@ Hyperlinks must be clearly identifiable from regular body copy to ensure rapid v
 ## 5. Accessibility Checklist
 
 *   **Keyboard Control**: Native `<button>` elements must be activated using `Space` or `Enter`. Hyperlink anchors `<a>` must open on `Enter`.
-*   **Invisible Labels**: If a button contains an icon alone, an explicit `aria-label` is mandatory (e.g. `aria-label="Close dialogue"`).
-*   **Tactile Targets**: Vertical spacing/padding should be inflated on touch screen viewports to ensure targets are at least `48px` tall.
+*   **Invisible Labels**: If a button contains an icon alone (like `.g-icon-btn`), an explicit `aria-label` is mandatory (e.g., `aria-label="Refresh list"`).
+*   **Tactile Targets**: Vertical spacing/padding should be inflated on touch screen viewports to ensure circular or rectangular targets are at least `40px` tall (desktop) or `48px` tall (mobile).
+*   **Disabled Link Elements (The "Accessible Disabled State" Rule)**: Styled anchor links `<a>` used as buttons cannot natively handle `disabled`. You must set `aria-disabled="true"`, apply the `.g-btn:disabled` opacity styling, and assign `tabindex="-1"` so they are completely bypassed by keyboard tab flows.

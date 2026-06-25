@@ -97,3 +97,50 @@ Every Google marketing site must define this standard utility class in its globa
   border: 0;
 }
 ```
+
+---
+
+## 4. Layout Alignment Patterns
+
+### 4.1 Horizontal Control Bars and Action Rows (The "Flex-Center" Rule)
+All horizontal control bars or action rows (e.g., file upload controls, filter bars, action headers) must use CSS Flexbox with strict vertical centering. This aligns icon centers, input heights, and button text along a single horizontal baseline.
+*   **Grid Spacing**: Standard spacing gap should align with the 8px grid system (e.g., `gap: 16px`).
+*   **Height Targets**: Inside action rows, ensure any active or interactive elements maintain a desktop height of `40px` and a mobile height of `48px` to comply with touch targets.
+
+```css
+.g-action-bar {
+  display: flex;
+  align-items: center; /* Perfect vertical alignment */
+  gap: 16px;           /* Standardized spacing on the 8px grid */
+  flex-wrap: wrap;     /* Safe wrapping for mobile viewports */
+}
+```
+
+### 4.2 Consistent Grid Baselines (The "Unified Left Margin" Rule)
+To maintain structural balance across pages, container headers (like section or list headings) and their main nested layout objects (like cards or tables) must share matching horizontal alignments and boundaries.
+*   Avoid custom margins or padding that break alignment with the rest of the grid hierarchy.
+*   Wrap both the heading and body elements inside a unified parent element that manages consistent responsive paddings:
+    ```css
+    .g-card-body {
+      padding: 24px; /* Default padding for mobile */
+    }
+    @media (min-width: 1024px) {
+      .g-card-body {
+        padding: 32px; /* Standardize on 8px grid desktop spec */
+      }
+    }
+    ```
+
+### 4.3 Header-Action Split (The "Header-Action Split" Rule)
+Card and section headers containing title text on the left and utility actions (e.g., Save, Clear, Refresh) on the right must use a space-between flex layout with vertical centering.
+*   **Typography**: The section title must use `Google Sans` (Medium, Headline 4 or Headline 3).
+*   **Alignment**: Vertically center the text baseline with the center-line of the action buttons.
+*   **Accessibility (a11y)**: Solo utility buttons must contain an explicit `aria-label` (e.g., `aria-label="Refresh table"`).
+
+```css
+.g-card-header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Aligns center-line of text with center-line of buttons */
+}
+```
