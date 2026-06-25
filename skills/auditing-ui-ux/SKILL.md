@@ -44,7 +44,7 @@ Read `references/audit-template.md` for the exact output format. Organize findin
 
 Include: design system updates required + implementation notes precise enough for a build agent to execute without interpretation.
 
-Review `references/design-principles.md` to ensure all recommendations strictly adhere to core UI/UX principles.
+Review `references/design-principles.md` to ensure all recommendations strictly adhere to core UI/UX principles. Refer to `references/common-defects.md` for standard UI defects and their corresponding corrective patterns.
 
 ## Step 4: Wait for Approval
 Present the plan. **Do not implement anything.**
