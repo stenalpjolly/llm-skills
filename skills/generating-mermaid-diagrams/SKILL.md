@@ -114,6 +114,8 @@ stateDiagram-v2
 1.  **Keep Layouts Simple:** Avoid dense cyclical linkages. If a diagram gets over 30 nodes, split it into multiple focused subgraphs or separate diagrams.
 2.  **Autonumbering:** Always include `autonumber` in sequence diagrams to improve flow readability.
 3.  **Theming:** Stick to standard themes or use basic styling directive syntax if requested, avoiding complex CSS style definitions that fail across different viewer renderers (like GitHub vs. Obsidian).
+4.  **Color Contrast:** When defining custom background fill colors inside class styles (`classDef`), always specify an explicit high-contrast text color (such as `color:#000` for light backgrounds) because standard markdown rendering engines default node text to white/light-grey in dark mode, creating unreadable low-contrast nodes.
+5.  **Status Color Coding:** When depicting lifecycle stages, status, or progress in Mermaid diagrams, use clear, standardized color coding (for example, soft blue for merged/released, soft green for completed but pending stack/active development, and white for planned/backlog items) to improve readability and status scanning.
 
 ---
 

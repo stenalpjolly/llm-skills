@@ -17,6 +17,7 @@ A well-written README enables users to understand what the project does in 30 se
 - **Progressive disclosure:** Quick value at the top, deep details further down.
 - **Code-first:** Show working examples, not just descriptions.
 - **Professional yet accessible:** Clear language without excessive jargon.
+- **Relative paths for internal links:** When referencing other files, directories, or assets inside a markdown document, always use relative paths instead of absolute paths (such as absolute `file://` URIs) because absolute paths are environment-specific and will break when the repository is cloned or viewed on another machine.
 
 ## Execution Workflow
 
