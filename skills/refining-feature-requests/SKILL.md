@@ -16,7 +16,8 @@ This skill enforces strict Product Management and Agile (Scrum) methodologies to
    - **Group & Formulate Questions:** Group the remaining unresolved decisions into logically cohesive themes (e.g., Database, UI/UX, Security). Ensure none of the questions in the group depend directly on the answers of other questions in the same group.
    - **Provide Recommendations:** For each question in the group, formulate a precise question paired with a "Recommended Answer" based on repository standards to reduce user friction.
    - **Themed Stretch Delivery:** Present the themed group of questions to the user in a single stretch using the `question` tool.
-   - **Loop & Branch:** Wait for the user's feedback. Use their answers to resolve the current branch, update your plan, and potentially generate new downstream sub-questions (which should also pass through the codebase guardrail). Repeat until all branches are fully resolved and the user explicitly confirms the requirements are complete.
+   - **Strict Iteration Loop:** Once the user answers, do **NOT** automatically jump to Phase 2 (PRD Drafting). Instead, analyze the answers, resolve dependencies, update your plan, and identify any new or remaining gaps. You must present the updated state and explicitly ask the user: "Would you like to refine the feature further with another round of questions, or are you ready to approve and proceed to Phase 2 (PRD Drafting)?"
+   - **Loop & Branch:** Repeat this interrogation loop recursively. You are strictly forbidden from drafting the PRD in Phase 2 until the user explicitly gives approval to proceed (e.g., by saying "proceed", "approve", "ready for PRD", or choosing a "Proceed to PRD Drafting" option).
 
 ## Phase 2: Product Requirements Document (PRD) Drafting
 1. Draft a structured PRD containing exactly these sections:
