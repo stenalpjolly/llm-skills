@@ -99,6 +99,9 @@ class MermaidLinter:
         # Group 1 is the outer/inner delimiter and label
         node_shape_pattern = re.compile(r'\b([a-zA-Z0-9_-]+)\s*(?:\[([^\]]+)\]|\(([^)]+)\)|\{([^}]+)\})')
 
+        # Detects any connector symbols of length >= 2
+        connector_pattern = re.compile(r'[<>=\.-]{2,}')
+
         for idx, line in enumerate(lines, 1):
             stripped = line.strip()
             if not stripped or stripped.startswith("%%"):
@@ -109,6 +112,19 @@ class MermaidLinter:
                 subgraphs_count += 1
             elif stripped == "end":
                 ends_count += 1
+
+            # Check for invalid left-pointing arrows
+            # Strip double quotes and link labels first to avoid false positives inside text labels
+            line_clean = re.sub(r'"[^"]*"', '', line)
+            line_clean = re.sub(r'\|[^|]+\|', '', line_clean)
+            for connector in connector_pattern.findall(line_clean):
+                if connector.startswith('<') and not connector.endswith('>'):
+                    self.log_error(
+                        idx,
+                        f"Invalid left-pointing arrow '{connector}' detected. Mermaid flowcharts do not support left-pointing arrows. "
+                        f"Reverse the connection direction (e.g., use 'B --> A' instead of 'A {connector} B') or use a bidirectional arrow '<-->'.",
+                        start_line
+                    )
 
             # Check link labels
             for match in link_label_pattern.finditer(line):
