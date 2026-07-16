@@ -127,7 +127,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 To maintain this repository as an extensible repository of AI knowledge, skills can be easily added and configured:
 
 ### Adding a New Skill
-1. Create a directory for your skill under `skills/<skill-name>/` (or under `builtin/` for core Kilo skills).
+1. Create a directory for your skill under `skills/<subcategory>/<skill-name>/` (or under `builtin/` for core Kilo skills).
 2. Within this directory, create a `SKILL.md` (or relevant skill description file) containing:
    - **Name**: The identifier of the skill.
    - **Description**: A clear summary of the skill's purpose.
@@ -194,6 +194,7 @@ The body of the `SKILL.md` is loaded only after the skill is triggered.
 2. **Explain the *Why*:** Models comply better with rationale. Instead of `Always use --force`, write `Use --force because the legacy API requires bypassing the cache`.
 3. **Signal, Not Noise:** Do not include boilerplate like "Always validate your output" or "I am an AI." The model already knows this.
 4. **Use Imperative Language:** Write "Run the validator," not "You should run the validator."
+5. **Define Checkable Steps:** Each step must end on a checkable, exhaustive completion criterion. A vague criterion invites premature completion. If a step's completion criterion is irreducibly fuzzy and leads to rushed work, split the sequence to hide post-completion steps (see [writing-great-skills](skills/meta/writing-great-skills/SKILL.md)).
 
 ### Phase 6: Bundle Scripts for Fragile Tasks (Avoid the "Instruction-Only Trap")
 If a task requires 5 exact, deterministic steps (e.g., parsing a complex JSON, calling a strict API, or executing a fragile git rebase), **do not ask the LLM to do it via instructions.** 

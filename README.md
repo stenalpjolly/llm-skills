@@ -63,11 +63,12 @@ llm-skills/
 ├── AGENTS.md             # Core agent guidelines, Karpathy rules, and creation standards
 ├── builtin/              # Core built-in skills configured natively
 │   └── kilo-config/      # Built-in Kilo configuration helper
-├── skills/               # Custom, domain-specific agent skills
-│   ├── [skill-name]/     
-│   │   ├── SKILL.md      # Skill YAML frontmatter + markdown guidelines
-│   │   ├── scripts/      # Deterministic helper scripts (Python/Bash)
-│   │   └── references/   # Static reference templates and schemas
+├── skills/               # Custom, domain-specific agent skills organized into subcategories
+│   ├── [subcategory]/    # e.g. frontend/, workflow/, testing/, code-review/, migration/
+│   │   └── [skill-name]/     
+│   │       ├── SKILL.md      # Skill YAML frontmatter + markdown guidelines
+│   │       ├── scripts/      # Deterministic helper scripts (Python/Bash)
+│   │       └── references/   # Static reference templates and schemas
 └── README.md             # Repository overview and skills index (this file)
 ```
 
@@ -106,53 +107,53 @@ The skills within this repository are designed to compose seamlessly into specia
 ### 🛡️ Core Guardrails & Guidelines
 | Skill Name | Location | Description |
 | :--- | :--- | :--- |
-| `bootstrapping-projects` | [`skills/bootstrapping-projects`](skills/bootstrapping-projects) | Bootstraps a new project or initializes an existing directory with standard structures, planning files, version control, and agnostic AI agent rules. |
-| `karpathy-guidelines` | [`skills/karpathy-guidelines`](skills/karpathy-guidelines) | Behavioral guidelines to reduce common LLM coding mistakes, focus on surgical changes, simplicity, and verifiable goals. |
-| `detecting-llm-laziness-and-duplicates` | [`skills/detecting-llm-laziness-and-duplicates`](skills/detecting-llm-laziness-and-duplicates) | Identifies LLM-generated duplicate code, TODO/FIXME comments, static/lazy stubs, mock data, and placeholder files. |
+| `bootstrapping-projects` | [`skills/workflow/bootstrapping-projects`](skills/workflow/bootstrapping-projects) | Bootstraps a new project or initializes an existing directory with standard structures, planning files, version control, and agnostic AI agent rules. |
+| `karpathy-guidelines` | [`skills/development/karpathy-guidelines`](skills/development/karpathy-guidelines) | Behavioral guidelines to reduce common LLM coding mistakes, focus on surgical changes, simplicity, and verifiable goals. |
+| `detecting-llm-laziness-and-duplicates` | [`skills/code-review/detecting-llm-laziness-and-duplicates`](skills/code-review/detecting-llm-laziness-and-duplicates) | Identifies LLM-generated duplicate code, TODO/FIXME comments, static/lazy stubs, mock data, and placeholder files. |
 | `kilo-config` (Built-in) | [`builtin/kilo-config`](builtin/kilo-config) | Guide for Kilo configuration: config paths, kilo.json fields, commands, agents, skills, permissions, MCPs, providers, TUI settings. |
 
 ### 📋 Product Planning & Issue Management
 | Skill Name | Location | Description |
 | :--- | :--- | :--- |
-| `refining-feature-requests` | [`skills/refining-feature-requests`](skills/refining-feature-requests) | Converts vague feature requests into structured product requirements (PRDs) and sprint-ready user stories. |
-| `drafting-github-issues` | [`skills/drafting-github-issues`](skills/drafting-github-issues) | Converts project specifications, task lists, or architectural maps into granular GitHub issue drafts. |
-| `managing-github-backlog` | [`skills/managing-github-backlog`](skills/managing-github-backlog) | Creates labels and publishes drafted JSON issues to a GitHub repository. |
+| `refining-feature-requests` | [`skills/workflow/refining-feature-requests`](skills/workflow/refining-feature-requests) | Converts vague feature requests into structured product requirements (PRDs) and sprint-ready user stories. |
+| `drafting-github-issues` | [`skills/workflow/drafting-github-issues`](skills/workflow/drafting-github-issues) | Converts project specifications, task lists, or architectural maps into granular GitHub issue drafts. |
+| `managing-github-backlog` | [`skills/workflow/managing-github-backlog`](skills/workflow/managing-github-backlog) | Creates labels and publishes drafted JSON issues to a GitHub repository. |
 
 ### ⚙️ Execution & Development Workflows
 | Skill Name | Location | Description |
 | :--- | :--- | :--- |
-| `implementing-test-driven-issue-resolution` | [`skills/implementing-test-driven-issue-resolution`](skills/implementing-test-driven-issue-resolution) | Converts user assumptions, feature requests, or bug reports into verified, test-driven code changes. |
-| `debugging-with-mantras` | [`skills/debugging-with-mantras`](skills/debugging-with-mantras) | Four-mantra debugging discipline—reproduce, trace the fail path, falsify the hypothesis, cross-reference every breadcrumb. |
-| `orchestrating-subagents` | [`skills/orchestrating-subagents`](skills/orchestrating-subagents) | Orchestrates specialized subagents in parallel to keep the main thread idle and maximize concurrency. |
-| `resolving-merge-conflicts` | [`skills/resolving-merge-conflicts`](skills/resolving-merge-conflicts) | Resolves in-progress git merge or rebase conflicts by locating conflicting files and tracing original intents. |
-| `scrutinizing-code-changes` | [`skills/scrutinizing-code-changes`](skills/scrutinizing-code-changes) | Outsider-perspective end-to-end review of a plan, PR, or code change to verify intent and code paths. |
-| `writing-post-mortems` | [`skills/writing-post-mortems`](skills/writing-post-mortems) | Writes the canonical engineering record of a fixed bug—root cause, mechanism, fix, validation, and prevention. |
+| `implementing-test-driven-issue-resolution` | [`skills/testing/implementing-test-driven-issue-resolution`](skills/testing/implementing-test-driven-issue-resolution) | Converts user assumptions, feature requests, or bug reports into verified, test-driven code changes. |
+| `debugging-with-mantras` | [`skills/development/debugging-with-mantras`](skills/development/debugging-with-mantras) | Four-mantra debugging discipline—reproduce, trace the fail path, falsify the hypothesis, cross-reference every breadcrumb. |
+| `orchestrating-subagents` | [`skills/workflow/orchestrating-subagents`](skills/workflow/orchestrating-subagents) | Orchestrates specialized subagents in parallel to keep the main thread idle and maximize concurrency. |
+| `resolving-merge-conflicts` | [`skills/development/resolving-merge-conflicts`](skills/development/resolving-merge-conflicts) | Resolves in-progress git merge or rebase conflicts by locating conflicting files and tracing original intents. |
+| `scrutinizing-code-changes` | [`skills/code-review/scrutinizing-code-changes`](skills/code-review/scrutinizing-code-changes) | Outsider-perspective end-to-end review of a plan, PR, or code change to verify intent and code paths. |
+| `writing-post-mortems` | [`skills/documentation/writing-post-mortems`](skills/documentation/writing-post-mortems) | Writes the canonical engineering record of a fixed bug—root cause, mechanism, fix, validation, and prevention. |
 
 ### 🚀 App Migration & Code Translation Pipeline
 | Skill Name | Location | Description |
 | :--- | :--- | :--- |
-| `scanning-codebase` | [`skills/scanning-codebase`](skills/scanning-codebase) | Scans a Next.js directory to map out routes, components, and API endpoints into a structured JSON format. |
-| `migrating-react-to-angular` | [`skills/migrating-react-to-angular`](skills/migrating-react-to-angular) | Converts React components (.jsx/.tsx) into standalone Angular 17+ components using Angular Material. |
-| `migrating-nextjs-to-python` | [`skills/migrating-nextjs-to-python`](skills/migrating-nextjs-to-python) | Translates Next.js JavaScript/TypeScript API routes into clean FastAPI Python backend endpoints. |
-| `validating-workspace-builds` | [`skills/validating-workspace-builds`](skills/validating-workspace-builds) | Provides build and lint validation checks for the active workspace code. |
+| `scanning-codebase` | [`skills/migration/scanning-codebase`](skills/migration/scanning-codebase) | Scans a Next.js directory to map out routes, components, and API endpoints into a structured JSON format. |
+| `migrating-react-to-angular` | [`skills/migration/migrating-react-to-angular`](skills/migration/migrating-react-to-angular) | Converts React components (.jsx/.tsx) into standalone Angular 17+ components using Angular Material. |
+| `migrating-nextjs-to-python` | [`skills/migration/migrating-nextjs-to-python`](skills/migration/migrating-nextjs-to-python) | Translates Next.js JavaScript/TypeScript API routes into clean FastAPI Python backend endpoints. |
+| `validating-workspace-builds` | [`skills/testing/validating-workspace-builds`](skills/testing/validating-workspace-builds) | Provides build and lint validation checks for the active workspace code. |
 
 ### 🔍 UI/UX & Web Standards Auditing
 | Skill Name | Location | Description |
 | :--- | :--- | :--- |
-| `applying-marketing-web-standards` | [`skills/applying-marketing-web-standards`](skills/applying-marketing-web-standards) | Provides guidelines, visual specs, and accessibility rules for Google-branded marketing websites. |
-| `auditing-ui-ux` | [`skills/auditing-ui-ux`](skills/auditing-ui-ux) | Performs a comprehensive UI/UX design audit on application screens or components. |
-| `crawling-web-applications` | [`skills/crawling-web-applications`](skills/crawling-web-applications) | Crawls, navigates, and audits a web application's links, buttons, and interactive elements. |
-| `designing-tasteful-frontends` | [`skills/designing-tasteful-frontends`](skills/designing-tasteful-frontends) | Upgrades AI-built frontends (landing pages, portfolios, marketing sites) to premium, Awwwards-level quality. |
-| `generating-qa-scenarios` | [`skills/generating-qa-scenarios`](skills/generating-qa-scenarios) | Generates conversational user evaluation scenarios and test case checklists for software flows or user journeys. |
+| `applying-marketing-web-standards` | [`skills/private/applying-marketing-web-standards`](skills/private/applying-marketing-web-standards) | Provides guidelines, visual specs, and accessibility rules for Google-branded marketing websites. |
+| `auditing-ui-ux` | [`skills/frontend/auditing-ui-ux`](skills/frontend/auditing-ui-ux) | Performs a comprehensive UI/UX design audit on application screens or components. |
+| `crawling-web-applications` | [`skills/testing/crawling-web-applications`](skills/testing/crawling-web-applications) | Crawls, navigates, and audits a web application's links, buttons, and interactive elements. |
+| `designing-tasteful-frontends` | [`skills/frontend/designing-tasteful-frontends`](skills/frontend/designing-tasteful-frontends) | Upgrades AI-built frontends (landing pages, portfolios, marketing sites) to premium, Awwwards-level quality. |
+| `generating-qa-scenarios` | [`skills/testing/generating-qa-scenarios`](skills/testing/generating-qa-scenarios) | Generates conversational user evaluation scenarios and test case checklists for software flows or user journeys. |
 
 ### 📝 Knowledge, Communication & Standards
 | Skill Name | Location | Description |
 | :--- | :--- | :--- |
-| `capturing-knowledge` | [`skills/capturing-knowledge`](skills/capturing-knowledge) | Extracts and categorizes best practices, workflows, and project conventions from a conversation context. |
-| `generating-mermaid-diagrams` | [`skills/generating-mermaid-diagrams`](skills/generating-mermaid-diagrams) | Generates syntax-valid, render-safe Mermaid.js diagrams (flowcharts, sequence diagrams, ERDs, Gantt charts). |
-| `translating-for-management` | [`skills/translating-for-management`](skills/translating-for-management) | Rewrites engineer-to-engineer content for engineering-org leadership and shapes it for specific channels (JIRA, Slack, etc.). |
-| `updating-readme` | [`skills/updating-readme`](skills/updating-readme) | Standardizes how agents update and manage README.md files, adopting the Deep Insight/Strands SDK style. |
-| `writing-great-skills` | [`skills/writing-great-skills`](skills/writing-great-skills) | Reference for writing and editing skills well—the vocabulary and principles that make a skill predictable. |
+| `capturing-knowledge` | [`skills/workflow/capturing-knowledge`](skills/workflow/capturing-knowledge) | Extracts and categorizes best practices, workflows, and project conventions from a conversation context. |
+| `generating-mermaid-diagrams` | [`skills/documentation/generating-mermaid-diagrams`](skills/documentation/generating-mermaid-diagrams) | Generates syntax-valid, render-safe Mermaid.js diagrams (flowcharts, sequence diagrams, ERDs, Gantt charts). |
+| `translating-for-management` | [`skills/documentation/translating-for-management`](skills/documentation/translating-for-management) | Rewrites engineer-to-engineer content for engineering-org leadership and shapes it for specific channels (JIRA, Slack, etc.). |
+| `updating-readme` | [`skills/documentation/updating-readme`](skills/documentation/updating-readme) | Standardizes how agents update and manage README.md files, adopting the Deep Insight/Strands SDK style. |
+| `writing-great-skills` | [`skills/meta/writing-great-skills`](skills/meta/writing-great-skills) | Reference for writing and editing skills well—the vocabulary and principles that make a skill predictable. |
 
 ---
 
