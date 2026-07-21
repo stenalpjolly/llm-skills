@@ -11,6 +11,7 @@ __pycache__/
 
 # Environment variables
 .env
-.idea/
 
-skills/private/
+# Private skills
+skills/applying-marketing-web-standards/
+skills/creating-formatted-gdocs

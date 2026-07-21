@@ -4,7 +4,7 @@
     "updating-readme": {
       "source": "stenalpjolly/llm-skills",
       "sourceType": "github",
-      "skillPath": "skills/documentation/updating-readme/SKILL.md",
+      "skillPath": "skills/updating-readme/SKILL.md",
       "computedHash": "20848a1d3c78a03857b3385d47c595d952f00c591b825f9b46b70a77684ed8d9"
     }
   }
