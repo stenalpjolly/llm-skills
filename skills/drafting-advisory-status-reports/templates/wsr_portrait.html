@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advisory Engagement - Weekly Status Report (Portrait Template)</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Roboto+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 20mm;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      background-image: radial-gradient(#e8eaed 1px, transparent 1px);
+      background-size: 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Roboto', sans-serif;
+      color: #202124;
+    }
+
+    .slide-container {
+      height: auto;
+      min-height: 210mm;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px rgba(60, 64, 67, 0.1), 0 1px 3px rgba(60, 64, 67, 0.15);
+      display: flex;
+      flex-direction: column;
+      padding: 50px 50px 45px 50px;
+      position: relative;
+      width: 100%;
+      max-width: 1120px;
+    }
+
+    /* Top Header Logos & Badges */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 35px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e8eaed;
+    }
+
+    .logos-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .google-logo {
+      height: 32px;
+    }
+
+    .logo-divider {
+      width: 2px;
+      height: 28px;
+      background-color: #dadce0;
+    }
+
+    .customer-logo {
+      height: 28px;
+      object-fit: contain;
+    }
+
+    .customer-brand-badge {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a73e8;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #1967d2;
+      background-color: #e8f0fe;
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid #c2e7ff;
+    }
+
+    .status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #34A853;
+      box-shadow: 0 0 0 3px rgba(52, 168, 83, 0.2);
+    }
+
+    h1 {
+      font-size: 38px;
+      margin: 0 0 12px 0;
+      color: #202124;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #4285F4, #34A853);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .report-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 30px;
+      padding: 16px 20px;
+      background-color: #f8f9fa;
+      border-radius: 12px;
+      border: 1px solid #e8eaed;
+      font-size: 14px;
+      color: #5f6368;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-item i {
+      color: #1a73e8;
+    }
+
+    .meta-item strong {
+      color: #202124;
+    }
+
+    /* Portrait Sections Grid (1-column stack) */
+    .sections-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e8eaed;
+      box-shadow: 0 2px 6px rgba(60, 64, 67, 0.06);
+      position: relative;
+      overflow: hidden;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #4285F4;
+    }
+
+    .card.green::before {
+      background: #34A853;
+    }
+
+    .card.blue::before {
+      background: #4285F4;
+    }
+
+    .card.amber::before {
+      background: #FBBC05;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 24px 12px 24px;
+    }
+
+    .card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .card-icon.green {
+      background: #34A853;
+    }
+
+    .card-icon.blue {
+      background: #4285F4;
+    }
+
+    .card-icon.amber {
+      background: #f2994a;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #202124;
+    }
+
+    .card-body {
+      padding: 0 24px 24px 24px;
+    }
+
+    /* List items styling */
+    .report-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .report-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: #3c4043;
+    }
+
+    .report-list-item i {
+      margin-top: 4px;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .card-body.green i {
+      color: #34A853;
+    }
+
+    .card-body.blue i {
+      color: #4285F4;
+    }
+
+    .item-content strong {
+      color: #202124;
+      font-weight: 600;
+    }
+
+    /* Action items table / grid */
+    .action-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 14px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .action-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background-color: #f8f9fa;
+      color: #5f6368;
+      font-weight: 600;
+      border-bottom: 2px solid #e8eaed;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .action-table td {
+      padding: 14px;
+      border-bottom: 1px solid #e8eaed;
+      vertical-align: top;
+      line-height: 1.5;
+      color: #3c4043;
+    }
+
+    .action-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .owner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .owner-badge.customer {
+      background-color: #f3e8ff;
+      color: #6b21a8;
+      border: 1px solid #e9d5ff;
+    }
+
+    .owner-badge.google {
+      background-color: #e8f0fe;
+      color: #1967d2;
+      border: 1px solid #c2e7ff;
+    }
+
+    .page-break {
+      page-break-before: always;
+      break-before: page;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e8eaed;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #70757a;
+    }
+
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .slide-container {
+        box-shadow: none;
+        max-width: 100%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slide-container">
+    <header class="header-bar">
+      <div class="logos-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg" alt="Google Cloud" class="google-logo">
+        <div class="logo-divider"></div>
+        <!-- Customer Logo: embed base64 here or fallback to text badge -->
+        <div class="customer-brand-badge">
+          <i class="fa-solid fa-shield-halved" style="color: #4285F4;"></i> CUSTOMER
+        </div>
+      </div>
+      <div class="status-badge">
+        <div class="status-indicator"></div>
+        <i class="fa-solid fa-chart-line"></i> Week X Status Report
+      </div>
+    </header>
+
+    <div class="content-area">
+      <h1>Customer Advisory Engagement<br><span>Weekly Status Report</span></h1>
+
+      <div class="report-meta">
+        <div class="meta-item">
+          <i class="fa-regular fa-calendar"></i>
+          <span><strong>Date:</strong> [Current Date]</span>
+        </div>
+        <div class="meta-item">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span><strong>Period:</strong> Week X of Y</span>
+        </div>
+        <div class="meta-item">
+          <i class="fa-solid fa-layer-group"></i>
+          <span><strong>Focus:</strong> [Engagement Focus Area]</span>
+        </div>
+      </div>
+
+      <div class="sections-grid">
+        <!-- Accomplishments Card -->
+        <div class="card green">
+          <div class="card-header">
+            <div class="card-icon green">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="card-title">Accomplishments This Week</h3>
+          </div>
+          <div class="card-body green">
+            <ul class="report-list">
+              <li class="report-list-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <div class="item-content">
+                  <strong>[Category Title]:</strong> [Accomplishment details here.]
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Plan For Next Week Card -->
+        <div class="card blue">
+          <div class="card-header">
+            <div class="card-icon blue">
+              <i class="fa-solid fa-calendar-week"></i>
+            </div>
+            <h3 class="card-title">Plan For Next Week</h3>
+          </div>
+          <div class="card-body blue">
+            <ul class="report-list">
+              <li class="report-list-item">
+                <i class="fa-solid fa-arrow-right"></i>
+                <div class="item-content">
+                  <strong>[Category Title]:</strong> [Plan details here.]
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Open Action Items Card -->
+        <div class="card amber">
+          <div class="card-header">
+            <div class="card-icon amber">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+            <h3 class="card-title">Open Action Items</h3>
+          </div>
+          <div class="card-body">
+            <table class="action-table">
+              <thead>
+                <tr>
+                  <th style="width: 25%;">Owner</th>
+                  <th style="width: 75%;">Action Item Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="owner-badge customer">
+                      <i class="fa-solid fa-building"></i> Customer Team
+                    </span>
+                  </td>
+                  <td>
+                    [Action item description.]
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="owner-badge google">
+                      <i class="fa-brands fa-google"></i> Google Team
+                    </span>
+                  </td>
+                  <td>
+                    [Action item description.]
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div>Google Cloud Advisory Services &bull; Technical Engagement</div>
+        <div>Confidential &bull; Page 1 of 1</div>
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>
